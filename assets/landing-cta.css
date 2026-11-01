@@ -1,0 +1,7 @@
+/* 본문에서 상담할 수 있는 동안 플로팅 버튼이 본문 조작을 덮지 않게 한다. */
+@media (max-width: 900px) {
+  .fab.inline-cta-visible {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}

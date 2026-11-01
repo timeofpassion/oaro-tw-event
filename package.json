@@ -1,0 +1,9 @@
+{
+  "name": "oaro-event-landings",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "check": "node scripts/check-assets.mjs",
+    "build": "node scripts/build.mjs"
+  }
+}
