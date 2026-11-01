@@ -1,3 +1,4 @@
 .vercel/
 .verification/
 node_modules/
+dist/

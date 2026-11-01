@@ -1,1 +1,8 @@
-{ "cleanUrls": true, "redirects": [ { "source": "/", "destination": "/tw/event-august/", "permanent": false } ] }
+{
+  "cleanUrls": true,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/", "destination": "/tw/event-august/", "permanent": false }
+  ]
+}
