@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>8月限定活動 | OARO 皮膚科 清涼里店</title>
-<meta name="description" content="首爾清涼里 OARO 皮膚科 8月限定活動。痘痘毛孔、泛紅修復、水光補水、緊緻拉提套餐優惠，皮膚科專科醫師親自診療。">
+<title>10月限定活動 | OARO 皮膚科 清涼里店</title>
+<meta name="description" content="首爾清涼里 OARO 皮膚科 10月限定活動。痘痘毛孔、泛紅修復、水光補水、緊緻拉提組合優惠，皮膚科專科醫師親自診療。">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://oarocnn.com/tw/event-august">
+<link rel="canonical" href="https://oaro-tw-event.vercel.app/tw/event-august/"><meta property="og:url" content="https://oaro-tw-event.vercel.app/tw/event-august/"><link rel="alternate" hreflang="zh-Hant-TW" href="https://oaro-tw-event.vercel.app/tw/event-august/"><link rel="alternate" hreflang="x-default" href="https://oarocnn.com/ko/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OARO 皮膚科 清涼里店">
-<meta property="og:title" content="8月限定活動 · 專屬你的肌膚煥新計劃">
-<meta property="og:description" content="痘痘毛孔 / 泛紅修復 / 水光補水 / 緊緻拉提 — 8月限定優惠價，名額有限。">
+<meta property="og:title" content="10月限定活動 · 專屬你的肌膚煥新計劃">
+<meta property="og:description" content="痘痘毛孔 / 泛紅修復 / 水光補水 / 緊緻拉提 — 10月限定優惠價，名額有限。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://jiewgewdoapsndqotcgw.supabase.co/storage/v1/object/public/organization-assets/oarocnn/interior/oaro-main-white.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -75,6 +75,18 @@ a{color:inherit; text-decoration:none}
   linear-gradient(180deg, rgba(10,10,12,.38) 0%, rgba(10,10,12,0) 26%, rgba(10,10,12,0) 46%, rgba(10,10,12,.9) 100%),
   linear-gradient(90deg, rgba(10,10,12,.6) 0%, rgba(10,10,12,.2) 42%, rgba(10,10,12,0) 62%)}
 @media(max-width:900px){ .hero img{object-position:50% 4%} }
+/* ── 모바일: 원장 3인이 잘리지 않게 사진을 배너로 깔고 카피는 그 아래 ── */
+@media(max-width:760px){
+  .hero{display:block; min-height:0; background:#101014}
+  .hero img{position:relative; inset:auto; width:100%; height:auto; aspect-ratio:16/9.4;
+            object-fit:cover; object-position:50% 20%; opacity:1}
+  .hero::after{content:none}
+  .hero-in{padding-block:26px 30px}
+  .hero h1{margin-top:14px}
+  .hero p{max-width:none}
+  .hero .btns{margin-top:20px}
+  .hero .btn{flex:1 1 100%; justify-content:center}
+}
 .hero-in{position:relative; z-index:2; width:100%; padding-block:clamp(40px,7vw,72px); color:#fff}
 .eyebrow{display:inline-block; font-size:13px; font-weight:700; letter-spacing:.08em; padding:6px 14px; border-radius:999px; background:var(--primary); color:#fff}
 .hero h1{margin:18px 0 10px; font-size:clamp(34px,6.4vw,58px); line-height:1.18; font-weight:900; letter-spacing:-.02em}
@@ -89,6 +101,40 @@ a{color:inherit; text-decoration:none}
 .btn-ghost:hover{background:rgba(255,255,255,.12)}
 .hero-meta{margin-top:26px; font-size:13px; color:rgba(255,255,255,.66); display:flex; flex-wrap:wrap; gap:8px 18px}
 
+/* ── 히어로 후킹(뱃지·숫자 스트립) ── */
+.eyebrows{display:flex; flex-wrap:wrap; gap:8px}
+.eyebrow-2{background:var(--gold); color:#1b1408}
+.hstats{list-style:none; display:flex; flex-wrap:wrap; gap:10px; margin:24px 0 0; padding:0}
+.hstats li{display:flex; flex-direction:column; gap:2px; min-width:96px; padding:10px 16px;
+  border-radius:14px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(6px)}
+.hstats b{font-size:23px; font-weight:900; letter-spacing:-.02em; color:#fff; line-height:1.1}
+.hstats span{font-size:12px; color:rgba(255,255,255,.72)}
+@media(max-width:760px){
+  .hstats{gap:8px}
+  .hstats li{flex:1 1 0; min-width:0; padding:10px 8px; text-align:center; align-items:center;
+    background:rgba(255,255,255,.1)}
+  .hstats b{font-size:20px}
+}
+/* ── 할인 뱃지·절약액 ── */
+.off-badge{display:inline-block; margin-left:8px; padding:4px 10px; border-radius:999px;
+  background:var(--primary); color:#fff; font-size:12px; font-weight:800; letter-spacing:.02em;
+  vertical-align:middle}
+.save{margin:8px 0 0; font-size:13.5px; font-weight:700; color:var(--primary)}
+.sv{text-align:right; font-size:13.5px; font-weight:700; color:var(--primary); white-space:nowrap}
+/* ── 예약 3단계 ── */
+.steps-sec{background:var(--soft)}
+.steps{list-style:none; margin:26px 0 0; padding:0; display:grid; gap:14px;
+  grid-template-columns:repeat(3,1fr); counter-reset:s}
+.steps li{position:relative; background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:24px 22px 22px}
+.steps .n{display:grid; place-items:center; width:34px; height:34px; border-radius:11px;
+  background:var(--primary); color:#fff; font-weight:800; font-size:16px; margin-bottom:12px}
+.steps b{display:block; font-size:17px; letter-spacing:-.01em}
+.steps p{margin:6px 0 0; font-size:14px; color:var(--muted); line-height:1.7}
+.steps-cta{display:flex; align-items:center; flex-wrap:wrap; gap:12px 16px; margin-top:22px}
+.steps-cta span{font-size:13px; color:var(--muted)}
+@media(max-width:760px){ .steps{grid-template-columns:1fr} }
 /* ── D-day 카운트다운 ── */
 .cd-bar{background:var(--navy); color:#fff}
 .cd{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px 24px; padding-block:20px}
@@ -228,7 +274,7 @@ footer p{margin:0 0 6px}
 /* ── 모바일 고정 CTA ── */
 .bar{position:fixed; left:0; right:0; bottom:0; z-index:60; display:none; gap:8px; padding:10px 14px calc(10px + env(safe-area-inset-bottom)); background:rgba(255,255,255,.95); backdrop-filter:blur(10px); border-top:1px solid var(--line)}
 .bar a{flex:1; height:50px; border-radius:12px; display:flex; align-items:center; justify-content:center; gap:7px; font-weight:800; font-size:15px}
-.bar .l{background:#06c755; color:#fff}
+.bar .l{flex:1 1 100%;background:#06c755; color:#fff}
 .bar .l svg{width:20px; height:20px; fill:currentColor}
 .bar .t{background:var(--primary); color:#fff; flex:0 0 40%}
 
@@ -248,32 +294,59 @@ footer p{margin:0 0 6px}
   .bar{display:flex}
   body{padding-bottom:76px}
 }
+/* ── 2026-10-23 대표 지시: 상담 버튼은 오른쪽 아래 플로팅 하나로 (모바일 하단 꽉 찬 바 대신) ── */
+.fab{top:auto; right:16px; bottom:calc(16px + env(safe-area-inset-bottom))}
+@media(max-width:900px){
+  .fab{right:16px; bottom:calc(16px + env(safe-area-inset-bottom))}
+  .fab a.f-line{width:auto; height:52px; padding:0 20px 0 16px; border-radius:999px; display:flex; align-items:center; gap:8px;
+    font-weight:800; font-size:15px; box-shadow:0 10px 28px rgba(15,23,42,.22)}
+  .fab a.f-line::after{content:"LINE 諮詢"}
+  .fab a.f-line svg{width:22px; height:22px}
+}
+@media(max-width:640px){ .bar{display:none} }
 </style>
-</head>
+<script type="application/ld+json">{"@context":"https://schema.org","inLanguage":"zh-Hant-TW","url":"https://oaro-tw-event.vercel.app/tw/event-august/","name":"10月限定活動 | OARO 皮膚科 清涼里店","publisher":{"@type":"MedicalClinic","@id":"https://oaro-tw-event.vercel.app/tw/#clinic","name":"OARO 皮膚科"},"description":"首爾清涼里 OARO 皮膚科 10月限定活動。痘痘毛孔、泛紅修復、水光補水、緊緻拉提組合優惠，皮膚科專科醫師親自診療。","image":"https://jiewgewdoapsndqotcgw.supabase.co/storage/v1/object/public/organization-assets/oarocnn/interior/oaro-main-white.png","@type":"WebPage","@id":"https://oaro-tw-event.vercel.app/tw/event-august/#page"}</script>
+<script>
+// 측정 ID 는 여기 두 줄만 채우면 된다. 비어 있으면 아무것도 불러오지 않는다.
+var GA4_ID = "G-WNT23D5595";      // OARO 대만 이벤트 랜딩 (2026-10-01)
+var PIXEL_ID = "1407749004218046";    // OARO TW Landing Pixel (Oaroskyl65 포트폴리오, 2026-10-01)
+if (GA4_ID) {
+  var gs = document.createElement("script"); gs.async = true;
+  gs.src = "https://www.googletagmanager.com/gtag/js?id=" + GA4_ID; document.head.appendChild(gs);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  gtag("js", new Date()); gtag("config", GA4_ID);
+}
+var LINE_TAG_ID = "1cd78cf6-74f5-43b2-bf67-ce844be1aa76";   // LINE 공식계정 @673mireh 추적 태그
+if (LINE_TAG_ID) {
+  (function(g,d,o){
+    g._ltq=g._ltq||[];g._lt=g._lt||function(){g._ltq.push(arguments)};
+    var h='https://d.line-scdn.net';
+    var s=d.createElement('script');s.async=1;
+    s.src=o||h+'/n/line_tag/public/release/v1/lt.js';
+    var t=d.getElementsByTagName('script')[0];t.parentNode.insertBefore(s,t);
+  })(window, document);
+  _lt('init', { customerType: 'account', tagId: LINE_TAG_ID });
+  _lt('send', 'pv', [LINE_TAG_ID]);
+}
+if (PIXEL_ID) {
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq("init", PIXEL_ID); fbq("track", "PageView");
+}
+</script></head>
 <body>
 
 <!-- ══ 헤더 ══ -->
 <header class="hd">
   <div class="wrap hd-in">
-    <a class="brand" href="https://oarocnn.com/zh">
+    <a class="brand" href="/tw/event-august/">
       <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJ4AAAA/CAYAAAARxXEwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABQzSURBVHhe7Zx7eBXlncc/78w5JzdIIIEEEoRVpE8LpWChqRo02NWC9RIX3FXAgtAKgT5FqE+7dmuFWmltu1VrW9u1WqxQgdJnEaVUrl6epVBXLlu8tApICQhJCCEhITk5Z+bdP+bc5nJmzslJSLD5+LzB+V3e23zPO/POnERo4bCkM6Sd5Z4gYz9MlviRLd3iNx15G+z1WXEPsHlthq5FeBqsJASI6JGTLRlesRaL+6ENxWq4WPEaaPq412jz2gxdh61qm8EFU2znPx3pZnrFf2SE1z2IJMXsTW7IDFt1NkNn8JKEA5EUmWZ2NN6p9AmvU5jPvk0LNkP62KqwGVIgaU468rGTWbZBn/D6SIKXvCx+r3AL/7jCS7oapEr3rXq2VJvBi9QSvLWSEOGoM0djSoiPyq7WZrG5LfUlPegMGVfQRVgEl3Bok6KIW2w+G8nrdTh0tJgQvWnF68lz5zFP3mRcQRfgqYakeE+9JcL90NFiQvYm4fXRy3EXk91rtyTSJ7wuI40lpjfguWo5kRDlkGA32S1R+oTXpYgkpZfiIL7kUoliEV+SOuLF6b+PkPC8J6wnuXjEl8RkwUFtaSE/OsLrIwPSFg72pDTr+IcUXppz1EX0tlXPXTipzVGnkoDOPsezZOhnW2k/dBK99iytjU0A5BUWIEoLyR1VSiig4lMUFDW5zt2e00nzYaI1yZGzwWZKxNXZ3XRF4+6PU5LL3jvQweSBR4borPAAdEnr1r2c+e0r8D/voeoWUSkCEfChZ+fCp0ZQeE8lgWs+jopqjovQ3cLzkJ0t/sKTaQfcBeQuBe9gB5MH7hmdEl77waO0Lv0dHR+eoLG9Ga1DR5X2hlRVxS8EWT6JJiTZE0dQ+L1qfJcWW0P7hJdxBzIVT6b5TiTPSFl4MqwhfCqNq3dy/sGtqOFGTiPJ1RVCdKDrOkIIhBDIiIqEEAipE1Ylus/HwLYc2gJBhj/zVQL/PBakRBL5lqGtF27CswXbLZZ4mz8RV+eFJNOOZCqeTPOdcM5IftOViAThU2nbvJezX19NUG8mpGtkKQFUXSEgffgVFVWC0HQUXeJDoCIQKEhdQYQFQRFEhjVOLHiS9l3vIkX0q63JJ9zusVuSI93jPdwXHpH0RKWGZUAO43MfrndwtMrE4o412shISXiaphE63sDpB9agCh+KFOj4CWg6qk8hJ5BFTlY2vuwASl4Wam4WvoAfv89HQPWRLfz4NInmV1AUBRHWaVnxe/SGc5EGnCfbPii7pdN0YVVdj/N8pI67gNyHnlYwpBZiQaZ+qT1970r86/6XM1ob5OaClCgIBJA1toz+1VPwf2oE6oA8pK6jnW6idcdBzm3YQ+jtY0ggJMGHIKD68PtV1JlXU/zQTAB0XUcR8c+B7eIoYz8csXksN412v9XQ28i0g5leNr3zraQQEiMl4XUcreP4pAdQ/T7asiR+TcEXDKHrOgPvu40BS262ppgm7uSKtbQ98wq6P4DeFkRHkh/IIig1Ltn9CGpxAVKTxk44lp2B8BxibZk2gzttbW3s2rULgIqKCnJycqwh3UC8k+FwmD179tDc3MxVV1/NwAEDTJF2HGSQmikBw/vm3jc5cfwE5Z8tZ+jQodYgE+71xUlJePXfXUfrr3cCgrBfoOs6OUEdMauCshVzEr/aFZksY4MhAIQgrIU5841nYc0bNPtVdCA78kwv/75b6LfwBlRFjWRGa+mk8CSEQiEOHz7E3/72NwD65+czbvx4CgcOdEiIo2kajY2NZGdn069fP5OvtraW6z9/AwDbt26jpKQk5mtvb6epyXh+6YoAfyDAwIIBCPOkeSBpaWnhzhkz2H/gAH/YtInx48ZBpO1fPf00DQ0NLF26lIL8/EhOvH4j5lec+PBDFlUvZPiI4TGfE9aeVS9cxNp1a1n7/BqmTp1qdlqDU8RnNTihv3UcIRTCWhi9Q4KmowwuoOTr0xGKtWXjOHFefT4fRQ/O4Oju9+j4sBm/UNB1HRRB+xvvE5hXSU5ODlLqiITLbbq0nW/j8Z88zqOPPUYoFLK6GTVqFI8++iiTKipMdiklW7du5Z4F8zl3zrjvvO666/jlk7+guNj+6MfKq6++yoxZxi2DFxVXX83atWvpl2cI+1sPPMDGFzdaw0z8/Kc/Y8KET1vNEFkJt2zZwt+PHWNhdXWC8Owx+w8c4M477mD48OEgYPv27WzatMkaHmPixIl88a67nD+lURJXizTwFJ5s66Dj/ZOEw2FQBFkhnSypkH3blfgK+1tWIqMHUoCQEikEUtNQpEAdkEf25DEoq95AURSk0EGH0Du1ZAnjobLSmRFEaG5qZt6X5rF9xw7Gjh3LfUuXUl5ejqKqtLa0sG79eh577DGqqqpY+etfc+stt8ZyX3vtNWbeNQtVVam6tYq6ulpeeeUV7lkwn1W/eY58h5OZyLhx43h25Uqr2cTRo0d5eMUKqxmAYHs7pxsa8Pv9FBcX245T4fjx41Redx0+n/2U6rpObW0t2dnZJvuxmhq279hhspHQn2AwGBGeB50Qn+fyoh8/Q0d9s3GzLgQInbBfx3/Vx4yAxAaFJP4cWSCk8SwvGhOYOJL8YBgIAzqgo52uR4R1I8Dlg+XFtm3b2L5jBzNnzGTn9h3cdtttlJaWMqSkhJEjR/LN++9n8+bNZGdn873vf5+GM2cgcu/205//DJ/PxwsbXuDZlSvZ+MJG5syezeuvv8627dutTdkYOnQoVbdWJS9VVVRWVhIIBOJJkTlZ8fDDrF+/ntzcXKZPm8ZbfzloO66srEz/zKbAvLlzeevgQVuJtp8WaZ47T+G1fXg69kCYyJOPoNKBWlZkGBIblAklhohNWv7lgwn6g0g0kNESJny2xQi1XbZT59XXXgPg1ltuwe/3W90AfHLMGCoqKqipqaGm5hgANTU17N+3n0mTJnHF+PEA+P1+Zs+eTU5ODi+++JKx2jsRGdqxmmPc/x/fZMnSJc5lyRL+88c/pq2tzTHfZnM7jhFNNgKGDRvGa6+8ylt/OWgrb+z5M1ddeaW1gqTouh4752Y92U6uGQ93Ip7CU3KzEMbSBVKiKaCEBUpW4smNT4LTXEYNIjsbhI4iExTqE4hob2XsR9rk5hq7zOg9mhPhcJjzra0oioJPNS5Jx44do/FsI5dffrlpp1pWWkZRURH19XUmwYTDYerr66mtraWlxfjAnDlzhlWrVvH8mjVs37HDsRw4cIDS0lJKhgxJc2PhNKF2zjWf4+UtW9j44kZb2fzHP1JbV2dNiREKhaivr49tkOrqzGO243GOPNykIrzAUPO2XdVVAuEswodOmeypEHr/FEhzkyIrB5EXOeECpMM731SYeuONKIrCIz/8AUeOHLG6kVKy4YUX+NPu3ZSXlzNy5EiICAmgNMljgprjxzl//nzs+NSpU1xTeS0fH/0JnnnmGVPs9GnTbJcta3nm6afJy8sz5XUFTc1NLFm6hLvnzrWVBdULOHTokDUlxttvv834K67g/vvvh4gQAUrLykxx1YsWMWbsWL71wAMme2dwFZ4E1Lwc452rT0UAilRB+mjd9a4RZNJJwkqWaIvEtO16j7CioCt67F5QDaggZPxy1jndMbmykmXLlnH48GEmln+GuV/6EuvXr2fjxo385IknuLqigsWLF1NaWsryZcvIiayQOTnG+A4fPmytEoARw4ebhFKQX8Djjz/OsytXcuONN5piu5Uk85KXl8dzz63ir++861kO7NvPmNFjktYVJfrBNT1+SgeP+vESngDOqTrZY4cjkAgkUhGEFI3zWw8igyF0qccaMi1WkY2GUBRjd9sa5OSug+TkF8RXPSHwjR6G1i8LX2RnK+xfU0kJIQSLv/pV/rBpExM+PYENGzZwz4IFzJk7l2XLl3Py5EkWL17Mn3btYuzYsZEkGFo6lAEDBnDkyBFaWltidw1Hjn7AqVOnGFpaSl6/vNgY++f3Z+qUKVRVVfGxjxkbrOg90dp16xhYWOhayoYN4/8OHIg2EyuxcSQ5ttmEURRFUFg4kJIhJZ5lcPFg/AHn+99ErrzqKubPn0/ltdea2v3lk0/y9sGDrHj44QRrAtaOuuAqPIDc3FyyJ41GahpSgObTORtuRa1rpf7RjWgJK5VAxMUXXegk6JrOhz/6PYUnW2lvbkHRJUII9IBCYNIYI14Rxi+CpNhxJ4QQVFRUsG3bVhrq65k2bRo5OTlseflljn7wAd9Zvtz2aOSSSy6hvLyc3Xv2sHPnTohcalavWkU4HGbqlCme92T5+fnMmjWLObNnx8rw4cMRQnDTTTeZ7LO/+EUKCwutVSSlqamJ+tOnjeeeFqoXLmSAg7i9ys033xy7P3Xis+Xl/PCRR+If0FRwnyIbKb256PjrCY5PWQZCIDUdEKiqH197Bznf/hfyv/x5/NFHBdF9gpCIyP83Pr2F0EP/TX2+gmgJQjCEqqrklwxi8MZvwtACVNWHJJIjBFjfXXhsPJw81dXVvPjSS2zetInx48c7xgDs3buX6bffTlNTEyUlJQSDQc6ePcvkyZNZ9dxz9OvXz3hzcUPkzcU285sLJxYuXGhq24l33nmHL8+fT11tbey53aBBg6itrTUJbdiwYWzcsIHF997L/gMHYnW+uXcvJ44fB8v49+3fzxNPPMHtt9/OzTfdlOAxKCoqYsSIEezbtw8SnjGWf+Yz3H333by5dy/B9naOHj3KF77wBfbv38/adetY+/zzCW8uLEpLU3ieKx5A4ONlyBvHkaurKIpqrE5SQwsE6PjhH6hb9BRtbx2DljYQoEkdea6d8/ve5+SiXxD80Saa/Do5DW0EpEALaQzIySM89ZO0DcxCjewwDeIjsI/FbnHHHJ8se8KECaxevZpRo0ZRW1tLc3Mz1dXVrF61yvbqLBWStWNlcHExBfn5ZGVnU1ZWRnFxMUVFRcycMYM5s2fz79/4Br9ZuZLfrV1LgcO72YkTJlBVZTwnvC3yb1VVVezRySfHjInZEsukSZNoaGhg0Ve+wt1z57L8O98hHA7zp927mb9gAU899RTPr1nDocOHTRurOJmJjlRXPKlLQjX1NNz6CFpjCx1CokuJIhRk2LjvE1kK6qACfJcUITSdjr+fQj/XgTwfRABhn0B0aPhUlcZcwfB+hRRu+RZiYD/jtZs0PrXxMcS7ZV/s4genamu5/vrrqYl88tNh+bJlLLn33qQrYSLmFW87Q0pKqD99mtmzZ3Ms8kwwkbq6OkKhEIMGDSIrK8vq5r6vfY158+YZB54dMN7V3nHnnaYVLxkvv/wyd86cGRufE6FQiMazZ22X8AEFBQlvOIyzUb1wofO72k4ILorriicjRSiCwIhi8h+6AzWso2lGZ3VdR6oS0JHtIcLHT9P+5/do23sYrfYc8nzQqEcIVB0URQFdcqnSn5yH/hVR2A9FGM/+It9FdsRuj1tysrOZPn06c+bMcS8J91nRMmaMcX9prz9ziouLKSsrcxSdDc8OeAakjd/vp3jwYIaUlJiKVXRJ8XB7kdqKB4j2EGT7aV25k5Pf/m1kWxV1JgRC9GUt+BQI6/HXbZEda/GP55L/bxWgG1+FwpAuwrazcFv17Aab24rHjtnNW1tbx/U3XA8JK54r1qGkgksHjBXvji5b8dwxd9624nVmbBbUZQ8+uNxqNCGN1Ugqwlj5rriUrDHDOf/628i2MAIdVSgIEUAoElWAIlREQEEIPwohiKx0ysA8hv5XNTlTP218IcD0iszpLzxbDB5+m9uGsBR3b7wINE2jubmJ0aNHc82ka2wv3E3Yq04Na8MJ6LpOU1Mzl112KddeW0lBgf2eL0pbWxu6rjNp0iRGXnaZ1e2AS8NA49lGigcXM7mykpIhHh+4FPFe8SLCsz5S0M+ep+7JzbRseYOsmmaQKll6kA7Fj6L7CPsFSgg0zqGXFtH/rskUzboOLdePz+83r5TWD7utR047XFeDCXdvEpyS7OckLTJMj+HUtd6C9xiNCG/hYWwuEMLyhc847W+8h37wCKc/+IDAaT8+RRAaUEDRyIHo4/6JrE8Mg9wAIhQCKdB8AlUx/36trRMWg/MXQ10NJty93UOS6epyemJsTniPNx6RkvBiI3Or2bMW9wCb12a4eMTnNk3dyYUan5XUxmuOSl14XrVLQNNp3v4mSliQd8M4ROL3z2JBzjh6HIy9RXxe09HTdNU4o2Q2Xnt2SsKLbkpdkVD7o9+h//QlNC2Mf+7nKP7uPUaTtlx7k3ZLAjat2QwWbIY+Lgi2E50U1+d4UTxFF0H/yzuQPYAsfxl5+xsMAYRD6LpmiUyxwiiW8PjvosUMFmyGHkKkWC5WOj+OlISXEgICU65EOR+mObeWYOUY489ZCCWlTnlHmOn94kun/fRPXM+SYX8z+mtRTkho3v0uyvkO+n1uLBKFUDiEqiq2XWyyy6GzNYKD0/uyGyWpI0UymOgLQqbjs5LheD3Su1Z4UVKqMXlQck8Em9Y8MjzcncZjcruN7hqPF10yXqOS7hEeqUyOe4C71ykgbrC5vEiW0CUT3Uec+IR23T1ejxMfVNp3IE4J1uM+MsA8waJnVzw8g9y9yQLMRseQHiBTHfeWcaSOecTW8few8KKkFWyPthmsuAe4e+PYdtK9hlRHkC5dMN4kVfQS4ZF2gmu0q7MHSXISem1/MyXZeLv1Hs+l0W6nJ9tOhluf3HwXKx5j6j7hpY1HTy14RnsGXEBS6UsqMRcLKYyl+y61iaTdQtoJJjLLvnCkcH4umrGky4VZ8VKZYRNpJ5jILLt38VEaSyIXRnh92EhHUOnEXixcOOGlPXtpJ5jILLt76UzfOpPTWxEX7B7PSsYtZlxBHz3MhVvxEsn445txBX30MD0jvD7+4bmIhde36l3MXMTCI3qbajX20WuJni/B/wOJq0sn3gNUfgAAAABJRU5ErkJggg==" alt="OARO 皮膚科" width="79" height="20">
       <span>清涼里店</span>
     </a>
 
-    <nav class="sns" aria-label="社群連結">
-      <a href="#" data-ch="line" target="_blank" rel="noopener" aria-label="LINE 官方帳號" title="LINE">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992zM7.71 13.474H5.325a.63.63 0 01-.63-.629V8.075a.63.63 0 111.26 0v4.14H7.71a.63.63 0 110 1.259zm2.466-.629a.631.631 0 01-1.26 0V8.075a.63.63 0 111.26 0v4.77zm5.741 0a.628.628 0 01-.629.629.626.626 0 01-.504-.252l-2.443-3.328v2.951a.63.63 0 11-1.26 0V8.075a.628.628 0 01.628-.629c.196 0 .38.096.5.25l2.448 3.339V8.075a.63.63 0 111.26 0v4.77zm3.855-3.014a.63.63 0 110 1.259h-1.756v1.126h1.756a.63.63 0 110 1.258h-2.386a.63.63 0 01-.629-.629V8.075c0-.346.282-.63.629-.63h2.386a.63.63 0 010 1.259h-1.756v1.127h1.756z"/></svg>
-      </a>
-      <a href="https://www.instagram.com/oaro_skyltw/" data-ch="ig" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.06 1.8.25 2.23.42.56.21.96.47 1.38.89.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.59-.07 4.85c-.06 1.17-.26 1.81-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.07.36-2.24.41-1.27.06-1.65.07-4.86.07s-3.59-.01-4.86-.07c-1.17-.06-1.82-.26-2.24-.42-.57-.22-.96-.48-1.38-.9-.42-.42-.69-.82-.9-1.38-.16-.42-.36-1.06-.42-2.23-.05-1.26-.06-1.65-.06-4.85s.02-3.59.06-4.86c.06-1.17.26-1.81.42-2.23.21-.57.48-.96.9-1.38.42-.42.81-.69 1.38-.9.42-.17 1.05-.36 2.22-.42 1.27-.05 1.65-.06 4.86-.06zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.91.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.02 3.67.07 4.95c.06 1.28.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.67 1.34 1.08 2.13 1.38.77.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.02 4.95-.07c1.28-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.67-.67 1.08-1.34 1.38-2.13.3-.77.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.02-3.67-.07-4.95c-.06-1.28-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63c-.77-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm7.85-10.41a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
-      </a>
-      <a href="#" data-ch="fb" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.1 23.69v-7.98H6.63v-3.67H9.1v-1.58c0-4.08 1.85-5.98 5.86-5.98.4 0 .96.04 1.47.1.51.06.9.14 1.14.2v3.32a8.6 8.6 0 00-.65-.03 26.8 26.8 0 00-.73-.01c-.71 0-1.26.1-1.68.31a1.69 1.69 0 00-.68.62c-.26.42-.37 1-.37 1.75v1.3h3.92l-.39 2.1-.29 1.57h-3.24v8.24C19.4 23.24 24 18.18 24 12.04 24 5.42 18.63.04 12 .04S0 5.42 0 12.04c0 5.63 3.87 10.35 9.1 11.65z"/></svg>
-      </a>
-      <a href="#" data-ch="yt" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 00.5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 002.12 2.14c1.87.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 002.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
-      </a>
-    </nav>
+    
 
     <a class="hd-cta" href="#" data-ch="line" target="_blank" rel="noopener">LINE 預約</a>
   </div>
@@ -283,20 +356,25 @@ footer p{margin:0 0 6px}
 <div class="hero">
   <img src="hero.webp" alt="OARO 皮膚科 清涼里店 醫療團隊" fetchpriority="high" width="1920" height="1120">
   <div class="wrap hero-in">
-    <span class="eyebrow">8月限定</span>
-    <h1>8月限定活動</h1>
-    <p>專屬你的肌膚煥新計劃。<br>皮膚科專科醫師親自診斷，一次整理你這個夏天累積的膚況。</p>
+    <div class="eyebrows"><span class="eyebrow">10月限定</span><span class="eyebrow eyebrow-2">最高 5折</span></div>
+    <h1>10月限定活動</h1>
+    <p>為你訂製專屬的肌膚煥新計畫。<br>由皮膚專科醫師親自診療，今年夏天累積的肌膚困擾一起改善。</p>
     <div class="btns">
       <a class="btn btn-line" href="#" data-ch="line" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992zM7.71 13.474H5.325a.63.63 0 01-.63-.629V8.075a.63.63 0 111.26 0v4.14H7.71a.63.63 0 110 1.259zm2.466-.629a.631.631 0 01-1.26 0V8.075a.63.63 0 111.26 0v4.77zm5.741 0a.628.628 0 01-.629.629.626.626 0 01-.504-.252l-2.443-3.328v2.951a.63.63 0 11-1.26 0V8.075a.628.628 0 01.628-.629c.196 0 .38.096.5.25l2.448 3.339V8.075a.63.63 0 111.26 0v4.77zm3.855-3.014a.63.63 0 110 1.259h-1.756v1.126h1.756a.63.63 0 110 1.258h-2.386a.63.63 0 01-.629-.629V8.075c0-.346.282-.63.629-.63h2.386a.63.63 0 010 1.259h-1.756v1.127h1.756z"/></svg>
-        LINE 立即諮詢
+        馬上 LINE 諮詢
       </a>
-      <a class="btn btn-ghost" href="#price">查看優惠內容</a>
+      <a class="btn btn-ghost" href="#price">查看活動內容</a>
     </div>
+    <ul class="hstats">
+      <li><b>-25%</b><span>組合優惠</span></li>
+      <li><b>5折</b><span>加購療程</span></li>
+      <li><b>10/31</b><span>活動截止</span></li>
+    </ul>
     <div class="hero-meta">
-      <span>首爾 清涼里站 1號出口</span>
-      <span>皮膚科專科醫師 3位</span>
-      <span>中文諮詢可</span>
+      <span>首爾清涼里站4號出口</span>
+      <span>皮膚科專科醫師3位</span>
+      <span>可中文諮詢</span>
     </div>
   </div>
 </div>
@@ -305,8 +383,8 @@ footer p{margin:0 0 6px}
 <div class="cd-bar">
   <div class="wrap cd">
     <div class="cd-l">
-      <b>8月活動倒數</b>
-      <span>優惠適用至 8/31（一）23:59・韓國時間</span>
+      <b>10月限定活動倒數中</b>
+      <span>優惠截止至 10/31（六）23:59（韓國時間）</span>
     </div>
     <div class="cd-nums" id="cd" role="timer" aria-live="off">
       <div class="cd-u d"><strong id="cd-d">--</strong><em>天</em></div><i>:</i>
@@ -321,55 +399,55 @@ footer p{margin:0 0 6px}
 <section id="price">
   <div class="wrap">
     <span class="chip">活動價格</span>
-    <h2>這個夏天需要處理的，<br>都整理在這裡了。</h2>
-    <p class="sub">以下為 8月活動期間適用的價格。所有療程皆由皮膚科專科醫師診斷後進行，可依膚況調整組合。</p>
+    <h2>夏天過後需要改善的肌膚困擾，<br>一次為您備齊。</h2>
+    <p class="sub">以下為 10 月限定優惠價格。本院全療程均由皮膚專科醫師親自診療評估後施作，並將依個人膚況客製化調整療程內容。</p>
 
     <div class="grid2">
       <div class="card card-a">
-        <span class="tag">痘痘 · 毛孔</span>
-        <h3>痘痘·毛孔改善套餐</h3>
+        <span class="tag">痘痘・毛孔</span><span class="off-badge">-10%</span>
+        <h3>痘痘・毛孔修復組合</h3>
         <ul class="items">
-          <li>Potenza（黃金微針）</li>
-          <li>exosome（外泌體）</li>
+          <li>POTENZA無限電波（黃金微針）</li>
+          <li>EXOSOME 外泌體</li>
           <li>毛孔水光肉毒</li>
         </ul>
-        <div class="price"><span class="was">552,000韓元</span><span class="now">499,000<small>韓元</small></span></div>
+        <div class="price"><span class="was">552,000韓元</span><span class="now">499,000<small>韓元</small></span></div><p class="save">省下 53,000韓元</p>
       </div>
 
       <div class="card card-b">
-        <span class="tag">泛紅 · 敏感</span>
-        <h3>夏季泛紅修復套餐</h3>
+        <span class="tag">泛紅・敏感</span><span class="off-badge">-25%</span>
+        <h3>夏日泛紅鎮靜組合</h3>
         <ul class="items">
-          <li>Vbeam 紅血絲雷射</li>
-          <li>舒緩修復護理</li>
+          <li>Vbeam 血管雷射（染料雷射）</li>
+          <li>鎮靜修復護理</li>
         </ul>
-        <div class="price"><span class="was">440,000韓元</span><span class="now">330,000<small>韓元</small></span></div>
+        <div class="price"><span class="was">440,000韓元</span><span class="now">330,000<small>韓元</small></span></div><p class="save">省下 110,000韓元</p>
       </div>
     </div>
 
     <div class="wide">
       <div>
-        <span class="tag">膚質重整</span>
-        <h3>深層補水·改善膚質套餐</h3>
+        <span class="tag">膚質改善</span><span class="off-badge">-21%</span>
+        <h3>深層保濕・膚質改善組合</h3>
         <ul class="items">
-          <li>Ultra Clear</li>
+          <li>UltraClear 冷纖雷射</li>
           <li>Re2O 6cc</li>
         </ul>
       </div>
       <div class="price" style="border:0; padding:0; margin:0; justify-content:flex-end">
-        <span class="was">268萬韓元</span><span class="now">210<small>萬韓元</small></span>
+        <span class="was">268萬韓元</span><span class="now">210<small>萬韓元</small></span><p class="save">現折 58萬韓元</p>
       </div>
     </div>
 
     <div class="wide" style="grid-template-columns:1fr">
       <div>
-        <span class="tag">3 選 1</span>
-        <h3>舒緩緊緻護理 <span style="color:var(--primary)">199,000韓元</span></h3>
-        <p class="sub" style="margin:8px 0 0">以下三項任選一項，同價。</p>
+        <span class="tag">3擇1</span>
+        <h3>鎮靜彈力護理 <span style="color:var(--primary)">199,000韓元</span></h3>
+        <p class="sub" style="margin:8px 0 0">以下療程3擇1，均一價。</p>
         <div class="pick">
-          <span>LHALA Peel（拉拉煥膚）</span>
-          <span>O2 Derm 氧氣護理</span>
-          <span>LDM 超聲波修復護理</span>
+          <span>LHALA Peel（Lala 煥膚）</span>
+          <span>O2toDerm 活氧護理</span>
+          <span>LDM 超音波鎮靜護理</span>
         </div>
       </div>
     </div>
@@ -378,18 +456,18 @@ footer p{margin:0 0 6px}
 
 <section class="tint">
   <div class="wrap">
-    <span class="chip">水光 · 補水</span>
-    <h2>空調季肌膚急救</h2>
-    <p class="sub">水光補水 · 澎彈發光肌。整天待在冷氣房，乾燥與暗沉會同時上來。</p>
+    <span class="chip">水光・保濕</span>
+    <h2>冷氣房乾燥肌・急救修護</h2>
+    <p class="sub">水光保濕・彈力光澤肌。整天待在冷氣房，肌膚不僅乾澀緊繃，連暗沉蠟黃也跟著找上門。</p>
 
     <div class="tbl-scroll">
       <table>
-        <thead><tr><th>項目</th><th style="text-align:right">活動價</th></tr></thead>
+        <thead><tr><th>項目</th><th style="text-align:right">活動價格</th><th style="text-align:right">折扣</th></tr></thead>
         <tbody>
-          <tr><td>麗珠蘭 Healer 4cc</td><td class="p"><s>540,000韓元</s>490,000韓元</td></tr>
-          <tr><td>Revive（瑞微）2cc</td><td class="p"><s>990,000韓元</s>800,000韓元</td></tr>
-          <tr><td>Re2O 6cc</td><td class="p"><s>880,000韓元</s>700,000韓元</td></tr>
-          <tr><td>Revive（保柔緹）1cc + Xeomin（西馬）2cc</td><td class="p"><s>880,000韓元</s>660,000韓元</td></tr>
+          <tr><td>麗珠蘭 Healer（黑盒）4cc</td><td class="p"><s>540,000韓元</s>490,000韓元</td><td class="sv">50,000韓元</td></tr>
+          <tr><td>保柔緹 Revive 水光針 2cc</td><td class="p"><s>990,000韓元</s>800,000韓元</td><td class="sv">190,000韓元</td></tr>
+          <tr><td>Re2O 6cc</td><td class="p"><s>880,000韓元</s>700,000韓元</td><td class="sv">180,000韓元</td></tr>
+          <tr><td>保柔緹 Revive 水光針 1cc + Xeomin 德國西馬肉毒 2cc</td><td class="p"><s>880,000韓元</s>660,000韓元</td><td class="sv">220,000韓元</td></tr>
         </tbody>
       </table>
     </div>
@@ -397,30 +475,47 @@ footer p{margin:0 0 6px}
     <div class="off">
       <div class="num">5<em>折</em></div>
       <div>
-        <h3>凡進行水光 / 皮膚營養針項目</h3>
-        <p style="margin:8px 0 12px; color:var(--muted); font-size:14.5px">可享以下項目 <b style="color:var(--fg)">任選五項 5折優惠</b>。</p>
+        <h3>水光/皮膚營養注射療程進行時</h3>
+        <p style="margin:8px 0 12px; color:var(--muted); font-size:14.5px"><b style="color:var(--fg)">以下療程2擇1，享 5 折優惠！</b></p>
         <div class="pick">
-          <span>ONDA 10萬焦耳</span>
-          <span>溶脂針 8萬焦耳</span>
+          <span>ONDA 超微波 10萬焦耳</span>
+          <span>鈦提升 8萬焦耳</span>
         </div>
       </div>
     </div>
 
     <div class="special">
-      <h3>特別套餐推薦</h3>
-      <p class="lead">緊緻拉提為主的組合方案。</p>
-      <div class="srow"><p>美版超音波 600發 + 麗珠蘭黑盒 4cc</p><b>270萬韓元</b></div>
-      <div class="srow"><p>美版超音波 300發 + ONDA 10萬焦耳</p><b>180萬韓元</b></div>
-      <div class="srow"><p>熱瑪吉 600發 + Re2O</p><b>290萬韓元</b></div>
-      <div class="srow"><p>眼周熱瑪吉 225發 + 眼周肉毒</p><b>110萬韓元</b></div>
-      <div class="srow"><p>Density Alpha + 肽提升 2萬焦耳</p><b>200萬韓元</b></div>
+      <h3>特別組合推薦</h3>
+      <p class="lead">打造緊緻拉提組合</p>
+      <div class="srow"><p>美國音波 600發 + 麗珠蘭 黑盒 4cc</p><b>270萬韓元</b></div>
+      <div class="srow"><p>美國音波 300發 + ONDA 超微波 10萬焦耳</p><b>180萬韓元</b></div>
+      <div class="srow"><p>鳳凰電波 600發 + Re2O</p><b>290萬韓元</b></div>
+      <div class="srow"><p>眼部鳳凰電波 225發 + 眼周肉毒</p><b>110萬韓元</b></div>
+      <div class="srow"><p>Density 無雙電波 ALPHA 600發 + 鈦提升 2萬焦耳</p><b>200萬韓元</b></div>
     </div>
 
     <ul class="notes">
-      <li>所有項目均按到院順序安排，並非預約順序。</li>
-      <li>活動名額有限，提前結束或不另行通知，請盡早到院體驗。</li>
-      <li>以上價格均不含增值稅價格（VAT 另算）。</li>
+      <li>所有療程均依現場報到順序安排施作（非預約先後順序）。</li>
+      <li>活動名額有限，額滿將提前結束且不另行通知，建議及早預約來院！</li>
+      <li>上述價格皆未包含附加稅（需另計 VAT 附加稅）。</li>
     </ul>
+  </div>
+</section>
+
+<!-- ══ 예약 3단계 ══ -->
+<section class="steps-sec">
+  <div class="wrap">
+    <span class="chip">預約方式</span>
+    <h2 style="font-size:clamp(22px,3.4vw,30px)">只需 3 步驟，即享活動價！</h2>
+    <ol class="steps">
+      <li><span class="n">1</span><b>LINE 諮詢</b><p>可直接以中文諮詢，告知我們您想施作的療程名稱。不用事先決定好！</p></li>
+      <li><span class="n">2</span><b>安排來院時段</b><p>我們會提供可預約的時段給您，待雙方確認後即完成預約。</p></li>
+      <li><span class="n">3</span><b>來院時請告知「10月活動」</b><p>經醫師親診評估後，將依個人膚況客製化調整療程內容，可適用活動價格。</p></li>
+    </ol>
+    <div class="steps-cta">
+      <a class="btn btn-line" href="#" data-ch="line" target="_blank" rel="noopener">馬上 LINE 諮詢</a>
+      <span>客服回覆時段 10:00-19:00（韓國時間）</span>
+    </div>
   </div>
 </section>
 
@@ -428,46 +523,46 @@ footer p{margin:0 0 6px}
 <section>
   <div class="wrap">
     <span class="chip">醫療團隊</span>
-    <h2>做這些療程的，<br>是皮膚科專科醫師本人。</h2>
-    <p class="sub">診斷、施打、術後追蹤由同一位醫師負責。</p>
+    <h2>療程施術將由<br>醫師本人進行</h2>
+    <p class="sub">診斷、施術、術後管理皆為同一位醫師負責。</p>
 
     <div class="grid3">
       <article class="doc">
-        <img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fjiewgewdoapsndqotcgw.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Forganization-assets%2Foarocnn%2Foaro-lmy.png&w=1920&q=75" alt="李美英 院長" loading="lazy" width="1920" height="1219">
+        <img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fjiewgewdoapsndqotcgw.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Forganization-assets%2Foarocnn%2Foaro-cmk.png&w=1920&q=75" alt="曹珉潔 院長" loading="lazy" width="1920" height="1219">
         <div class="b">
-          <div class="role">院長 · 皮膚科專科醫師</div>
-          <h3>李美英</h3>
-          <p>比起快速治療，我更追求正確的治療，用心呵護，讓您珍貴的日常生活綻放更美麗的光彩。</p>
+          <div class="role">院長・皮膚科專科醫師</div>
+          <h3>曹珉潔</h3>
+          <p>不僅是單純的治療，更致力成為一生為您守護肌膚的主治醫師，為您喚回肌膚原本健康活力。</p>
         </div>
       </article>
       <article class="doc">
-        <img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fjiewgewdoapsndqotcgw.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Forganization-assets%2Foarocnn%2Foaro-cmk.png&w=1920&q=75" alt="曹珉潔 院長" loading="lazy" width="1920" height="1219">
+        <img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fjiewgewdoapsndqotcgw.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Forganization-assets%2Foarocnn%2Foaro-lmy.png&w=1920&q=75" alt="李美英 院長" loading="lazy" width="1920" height="1219">
         <div class="b">
-          <div class="role">院長 · 皮膚科專科醫師</div>
-          <h3>曹珉潔</h3>
-          <p>超越簡單的治療，我將成為您一生的皮膚主治醫師，幫助您恢復肌膚原本的健康活力。</p>
+          <div class="role">院長・皮膚科專科醫師</div>
+          <h3>李美英</h3>
+          <p>比起匆忙的治療，更堅持精準對症的治療；用心專注於每一次診療，只為讓您珍貴的日常生活綻放自信光采。</p>
         </div>
       </article>
       <article class="doc">
         <img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fjiewgewdoapsndqotcgw.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Forganization-assets%2Foarocnn%2Foaro-pyj.png&w=1920&q=75" alt="朴恩晶 院長" loading="lazy" width="1920" height="1219">
         <div class="b">
-          <div class="role">院長 · 皮膚科專科醫師</div>
+          <div class="role">院長・皮膚科專科醫師</div>
           <h3>朴恩晶</h3>
-          <p>在與您相對的每一刻，您的煩惱就是我的煩惱，我承諾為您提供最溫暖的診療。</p>
+          <p>每一次與您面對面時，我都會將您的困擾視為自己的困擾；承諾給您最具溫度的專業診療。</p>
         </div>
       </article>
     </div>
 
     <div style="margin-top:56px">
       <span class="chip">設備</span>
-      <h2 style="font-size:clamp(22px,3.4vw,30px)">活動中會用到的主要儀器</h2>
+      <h2 style="font-size:clamp(22px,3.4vw,30px)">活動主要使用項目</h2>
       <div class="grid6">
-        <div class="dev"><img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fagqdgbuateknhwpocrgu.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fassets%2Foaro%2Fthermage-oaro.png&w=640&q=75" alt="熱瑪吉 FLX" loading="lazy"><div><b>熱瑪吉 FLX</b><span>Thermage FLX</span></div></div>
-        <div class="dev"><img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fagqdgbuateknhwpocrgu.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fassets%2Foaro%2Fulthera2.png&w=640&q=75" alt="超音波刀" loading="lazy"><div><b>超音波刀</b><span>Ultherapy Prime</span></div></div>
-        <div class="dev"><img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fagqdgbuateknhwpocrgu.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fassets%2Foaro%2Fultraclear.png&w=640&q=75" alt="Ultra Clear" loading="lazy"><div><b>Ultra Clear</b><span>膚質重整雷射</span></div></div>
-        <div class="dev"><img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fagqdgbuateknhwpocrgu.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fasset-generation%2Fentity-thumbnails%2Fd2ca470b-d9b0-4d6c-9994-a16ac68f9e00%2Fmethod%2Fonda_device_white_1783522864172.png&w=640&q=75" alt="ONDA" loading="lazy"><div><b>ONDA</b><span>微波緊緻</span></div></div>
+        <div class="dev"><img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fagqdgbuateknhwpocrgu.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fassets%2Foaro%2Fthermage-oaro.png&w=640&q=75" alt="鳳凰電波" loading="lazy"><div><b>鳳凰電波</b><span>Thermage FLX</span></div></div>
+        <div class="dev"><img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fagqdgbuateknhwpocrgu.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fassets%2Foaro%2Fulthera2.png&w=640&q=75" alt="美國音波" loading="lazy"><div><b>美國音波</b><span>Ultherapy Prime</span></div></div>
+        <div class="dev"><img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fagqdgbuateknhwpocrgu.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fassets%2Foaro%2Fultraclear.png&w=640&q=75" alt="UltraClear 冷纖雷射" loading="lazy"><div><b>UltraClear 冷纖雷射</b><span>膚質改善雷射</span></div></div>
+        <div class="dev"><img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fagqdgbuateknhwpocrgu.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fasset-generation%2Fentity-thumbnails%2Fd2ca470b-d9b0-4d6c-9994-a16ac68f9e00%2Fmethod%2Fonda_device_white_1783522864172.png&w=640&q=75" alt="ONDA超微波" loading="lazy"><div><b>ONDA超微波</b><span>超微波溶脂</span></div></div>
         <div class="dev"><img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fagqdgbuateknhwpocrgu.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fasset-generation%2Fentity-thumbnails%2Fd2ca470b-d9b0-4d6c-9994-a16ac68f9e00%2Fmethod%2Fre2o_white_1783522686546.png&w=640&q=75" alt="Re2O" loading="lazy"><div><b>Re2O</b><span>Elravie Re2O</span></div></div>
-        <div class="dev"><img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fjiewgewdoapsndqotcgw.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fasset-generation%2Foaro%2Fdenserty-method_2k.png&w=640&q=75" alt="Density" loading="lazy"><div><b>Density Alpha</b><span>高頻拉提</span></div></div>
+        <div class="dev"><img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fjiewgewdoapsndqotcgw.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fasset-generation%2Foaro%2Fdenserty-method_2k.png&w=640&q=75" alt="Density 無雙電波 ALPHA" loading="lazy"><div><b>Density 無雙電波 ALPHA</b><span>電波拉提</span></div></div>
       </div>
     </div>
   </div>
@@ -477,21 +572,21 @@ footer p{margin:0 0 6px}
 <section class="tint">
   <div class="wrap">
     <span class="chip">診所環境</span>
-    <h2>清涼里 樂天城堡 5樓，<br>從地鐵站走過來就到。</h2>
-    <p class="sub">大廳、治療室、洗臉室分開規劃，療程前後不需要在同一個空間等待。</p>
+    <h2>清涼里樂天CASTLE 5樓，<br>出地鐵站步行即達</h2>
+    <p class="sub">候診室、診療室與洗卸空間獨立分區，療程前後規劃分區等候空間。</p>
 
     <div class="gal">
       <figure>
-        <img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fjiewgewdoapsndqotcgw.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Forganization-assets%2Foarocnn%2Finterior%2Flobby-1.png&w=1920&q=75" alt="大廳" loading="lazy">
-        <figcaption>大廳</figcaption>
+        <img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fjiewgewdoapsndqotcgw.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Forganization-assets%2Foarocnn%2Finterior%2Flobby-1.png&w=1920&q=75" alt="候診室" loading="lazy">
+        <figcaption>候診室</figcaption>
       </figure>
       <figure>
-        <img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fjiewgewdoapsndqotcgw.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Forganization-assets%2Foarocnn%2Finterior%2Ftreatment-room-1.png&w=828&q=75" alt="治療室" loading="lazy">
-        <figcaption>治療室</figcaption>
+        <img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fjiewgewdoapsndqotcgw.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Forganization-assets%2Foarocnn%2Finterior%2Ftreatment-room-1.png&w=828&q=75" alt="診療室" loading="lazy">
+        <figcaption>診療室</figcaption>
       </figure>
       <figure>
-        <img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fjiewgewdoapsndqotcgw.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Forganization-assets%2Foarocnn%2Finterior%2Fwashroom.png&w=828&q=75" alt="洗臉室" loading="lazy">
-        <figcaption>洗臉室</figcaption>
+        <img src="https://oarocnn.com/_next/image?url=https%3A%2F%2Fjiewgewdoapsndqotcgw.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Forganization-assets%2Foarocnn%2Finterior%2Fwashroom.png&w=828&q=75" alt="洗卸空間" loading="lazy">
+        <figcaption>洗卸空間</figcaption>
       </figure>
     </div>
   </div>
@@ -500,37 +595,37 @@ footer p{margin:0 0 6px}
 <!-- ══ FAQ ══ -->
 <section>
   <div class="wrap">
-    <span class="chip">常見問題</span>
-    <h2>來之前，<br>大家最常問的幾件事。</h2>
-    <p class="sub">還有其他想確認的，直接用 LINE 問就可以。</p>
+    <span class="chip">FAQ 常見問題</span>
+    <h2>來院前，<br>最常詢問的問題</h2>
+    <p class="sub">其他想了解的事項，可直接以 LINE 詢問。</p>
 
     <details open>
-      <summary>要怎麼預約活動價格？</summary>
-      <p>透過本頁的 LINE 官方帳號告知想做的項目，我們會協助安排到院時間。到院時請說明是「8月活動」即可適用活動價格。</p>
+      <summary>活動價格如何預約？</summary>
+      <p>請直接向本頁的 LINE 官方帳號告知您想要進行的療程，我們會為您確認目前可預約的時段。來院時請告知我們「10月活動」，即可適用活動價格。</p>
     </details>
     <details>
-      <summary>活動價格有含增值稅嗎？</summary>
-      <p>本頁所列價格皆為未稅價，實際結帳時另加增值稅（VAT）。名額有限，可能於公告期限前提前結束。</p>
+      <summary>活動價格是否已包含附加稅？</summary>
+      <p>本頁面標示的價格皆為未稅價格，結帳時需另計 VAT 附加稅。活動優惠名額有限，可能於活動公告截止日前提前結束。</p>
     </details>
     <details>
-      <summary>治療時疼痛程度如何？</summary>
-      <p>依療程種類與個人敏感度而有差異。多數項目在治療前會塗抹麻醉藥膏，過程中若感到不適可隨時告知醫師調整強度。</p>
+      <summary>施術時會很痛嗎？</summary>
+      <p>根據不同的施術療程及個人耐受程度會有不同的疼痛感受。大部分的療程術前會塗敷麻醉藥膏，如療程進行中感受到不適，請隨時告知我們，將為您即時調整能量強度。</p>
     </details>
     <details>
-      <summary>需要做幾次治療？</summary>
-      <p>依膚況與治療目標不同。醫師會在初診時說明建議次數與間隔，不會在未經說明的情況下增加療程。</p>
+      <summary>療程大約需要打幾次呢？</summary>
+      <p>依個人肌膚狀態與希望達成的效果有所不同。初診時即為您完整說明建議療程次數與施作間隔，不會在未經溝通的情況下增加療程。</p>
     </details>
     <details>
-      <summary>術後可以立即恢復日常生活嗎？</summary>
-      <p>多數療程當天即可正常作息。部分項目治療後可能出現短暫泛紅，通常在數小時至數日內緩解，醫師會另外說明術後注意事項。</p>
+      <summary>術後馬上可以回歸日常生活嗎？</summary>
+      <p>大部分的療程在術後當日即可恢復日常生活。部分療程術後可能會出現短暫的泛紅，通常會在數小時至數天內自然消退。術後注意事項將另行提供說明。</p>
     </details>
     <details>
-      <summary>什麼時候能看到效果？</summary>
-      <p>部分項目治療後即可感受到膚質變化，膠原增生類的療程通常需要數週至數月逐步顯現。效果因個人體質而異。</p>
+      <summary>什麼時候可以感覺到效果呢？</summary>
+      <p>部分療程在術後當下即可感受到膚質的改善；膠原蛋白再生類型療程則需數週至數月逐步改善。療程成效可能因個人體質與膚況不同而有所差異。</p>
     </details>
     <details>
-      <summary>可以用中文溝通嗎？</summary>
-      <p>可以。請先透過 LINE 官方帳號以中文聯繫，我們會協助安排到院當天的溝通方式。</p>
+      <summary>可以以中文溝通嗎？</summary>
+      <p>可以。請先透過 LINE 官方帳號以中文與我們聯絡，將為您說明到院當日溝通與諮詢方式。</p>
     </details>
   </div>
 </section>
@@ -538,24 +633,25 @@ footer p{margin:0 0 6px}
 <!-- ══ 오시는 길 ══ -->
 <section class="tint">
   <div class="wrap">
-    <span class="chip">交通指南</span>
-    <h2>清涼里站 1號出口，<br>搭電扶梯直接上 5樓。</h2>
+    <span class="chip">來院路線</span>
+    <h2>清涼里站4號出口，<br>步行1分鐘即達</h2>
 
     <div class="info" style="margin-top:36px">
       <dl class="dl">
-        <div><dt>地址</dt><dd>首爾市東大門區王山路200<br>清涼里站樂天城堡 SKY-L65, 5樓</dd></div>
+        <div><dt>地址</dt><dd>首爾市東大門區旺山路200號<br>清涼里站樂天CASTLE SKY-L65, 5樓</dd></div>
         <div><dt>電話</dt><dd><a href="tel:+82-2-967-1064" style="border-bottom:1px solid var(--line)">02-967-1064</a></dd></div>
-        <div><dt>診療時間</dt><dd>週一·三·五 10:00 – 20:00<br>週二·四 10:00 – 19:00<br>週六 10:00 – 16:00<br><span style="color:var(--muted); font-size:14px">午休 13:00 – 14:00 · 週日·公休日 休診</span></dd></div>
-        <div><dt>停車</dt><dd>自助停車，SUV 可停（地下 3·4樓）</dd></div>
+        <div><dt>診療時間</dt><dd>一・三・五 10:00-20:00<br>二・四 10:00-19:00<br>六 10:00-16:00<br><span style="color:var(--muted); font-size:14px">午休時間 13:00-14:00・每週日・韓國國定假日休診</span></dd></div>
+        <div><dt>停車</dt><dd>附設平面車位，SUV 可停（地下3・4樓）</dd></div>
       </dl>
 
       <div>
         <h3 style="margin-bottom:14px">步行路線</h3>
         <ul class="route">
-          <li><b>1</b>清涼里站 1號出口 → 室外電扶梯 → 5樓</li>
-          <li><b>2</b>清涼里站 5號出口 → 大樓入口 → 電梯 → 5樓</li>
+          <li><b>1</b>京義中央線 清涼里站 1號出口 → 室外手扶梯 → 5樓</li>
+          <li><b>2</b>1號線 清涼里站 5號出口 → 大樓入口 → 電梯 → 5樓</li>
+          <li><b>3</b>1號線 清涼里站 4號出口 → 大樓入口 → 電梯 → 5樓</li>
         </ul>
-        <a class="btn" style="margin-top:22px; background:var(--primary); color:#fff" href="https://maps.google.com/?q=%EC%98%A4%EC%95%84%EB%A1%9C%ED%94%BC%EB%B6%80%EA%B3%BC+%EC%B2%AD%EB%9F%89%EB%A6%AC" target="_blank" rel="noopener">在 Google 地圖上開啟</a>
+        <a class="btn" style="margin-top:22px; background:var(--primary); color:#fff" href="https://maps.google.com/?q=%EC%98%A4%EC%95%84%EB%A1%9C%ED%94%BC%EB%B6%80%EA%B3%BC+%EC%B2%AD%EB%9F%89%EB%A6%AC" target="_blank" rel="noopener">開啟 Google 地圖</a>
       </div>
     </div>
   </div>
@@ -567,19 +663,14 @@ footer p{margin:0 0 6px}
     <div class="fx">
       <div>
         <p style="color:#fff; font-weight:800; font-size:15px">OARO 皮膚科 清涼里店</p>
-        <p>首爾市東大門區王山路200 清涼里站樂天城堡 SKY-L65, 5樓 · 02-967-1064</p>
+        <p>首爾市東大門區旺山路200號 清涼里站樂天CASTLE SKY-L65, 5樓 · 02-967-1064</p>
         <p>代表 曹珉潔 · 事業者登記號 542-88-03697</p>
       </div>
-      <nav class="sns" aria-label="社群連結">
-        <a href="#" data-ch="line" target="_blank" rel="noopener" aria-label="LINE"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992zM7.71 13.474H5.325a.63.63 0 01-.63-.629V8.075a.63.63 0 111.26 0v4.14H7.71a.63.63 0 110 1.259zm2.466-.629a.631.631 0 01-1.26 0V8.075a.63.63 0 111.26 0v4.77zm5.741 0a.628.628 0 01-.629.629.626.626 0 01-.504-.252l-2.443-3.328v2.951a.63.63 0 11-1.26 0V8.075a.628.628 0 01.628-.629c.196 0 .38.096.5.25l2.448 3.339V8.075a.63.63 0 111.26 0v4.77zm3.855-3.014a.63.63 0 110 1.259h-1.756v1.126h1.756a.63.63 0 110 1.258h-2.386a.63.63 0 01-.629-.629V8.075c0-.346.282-.63.629-.63h2.386a.63.63 0 010 1.259h-1.756v1.127h1.756z"/></svg></a>
-        <a href="https://www.instagram.com/oaro_skyltw/" data-ch="ig" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.06 1.8.25 2.23.42.56.21.96.47 1.38.89.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.59-.07 4.85c-.06 1.17-.26 1.81-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.07.36-2.24.41-1.27.06-1.65.07-4.86.07s-3.59-.01-4.86-.07c-1.17-.06-1.82-.26-2.24-.42-.57-.22-.96-.48-1.38-.9-.42-.42-.69-.82-.9-1.38-.16-.42-.36-1.06-.42-2.23-.05-1.26-.06-1.65-.06-4.85s.02-3.59.06-4.86c.06-1.17.26-1.81.42-2.23.21-.57.48-.96.9-1.38.42-.42.81-.69 1.38-.9.42-.17 1.05-.36 2.22-.42 1.27-.05 1.65-.06 4.86-.06zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.91.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.02 3.67.07 4.95c.06 1.28.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.67 1.34 1.08 2.13 1.38.77.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.02 4.95-.07c1.28-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.67-.67 1.08-1.34 1.38-2.13.3-.77.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.02-3.67-.07-4.95c-.06-1.28-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63c-.77-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm7.85-10.41a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg></a>
-        <a href="#" data-ch="fb" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.1 23.69v-7.98H6.63v-3.67H9.1v-1.58c0-4.08 1.85-5.98 5.86-5.98.4 0 .96.04 1.47.1.51.06.9.14 1.14.2v3.32a8.6 8.6 0 00-.65-.03 26.8 26.8 0 00-.73-.01c-.71 0-1.26.1-1.68.31a1.69 1.69 0 00-.68.62c-.26.42-.37 1-.37 1.75v1.3h3.92l-.39 2.1-.29 1.57h-3.24v8.24C19.4 23.24 24 18.18 24 12.04 24 5.42 18.63.04 12 .04S0 5.42 0 12.04c0 5.63 3.87 10.35 9.1 11.65z"/></svg></a>
-        <a href="#" data-ch="yt" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 00.5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 002.12 2.14c1.87.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 002.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg></a>
-      </nav>
+      
     </div>
     <p class="disc">
       ※ 本頁內容為醫療資訊，不可取代醫師診斷。治療效果與恢復期間因個人體質、膚況及生活習慣而異，可能發生副作用。療程前請務必與醫師充分諮詢。<br>
-      ※ 活動價格為未稅價（VAT 另計），名額有限，可能提前結束且不另行通知。所有項目依到院順序安排。<br>
+      ※ 活動價格為未稅價（需另計 VAT 附加稅），名額有限，可能提前結束且不另行通知。所有療程依現場報到順序安排。<br>
       © OARO Dermatology Cheongnyangni. All rights reserved.
     </p>
   </div>
@@ -591,36 +682,20 @@ footer p{margin:0 0 6px}
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992zM7.71 13.474H5.325a.63.63 0 01-.63-.629V8.075a.63.63 0 111.26 0v4.14H7.71a.63.63 0 110 1.259zm2.466-.629a.631.631 0 01-1.26 0V8.075a.63.63 0 111.26 0v4.77zm5.741 0a.628.628 0 01-.629.629.626.626 0 01-.504-.252l-2.443-3.328v2.951a.63.63 0 11-1.26 0V8.075a.628.628 0 01.628-.629c.196 0 .38.096.5.25l2.448 3.339V8.075a.63.63 0 111.26 0v4.77zm3.855-3.014a.63.63 0 110 1.259h-1.756v1.126h1.756a.63.63 0 110 1.258h-2.386a.63.63 0 01-.629-.629V8.075c0-.346.282-.63.629-.63h2.386a.63.63 0 010 1.259h-1.756v1.127h1.756z"/></svg>
     LINE 諮詢
   </a>
-  <a class="t" href="tel:+82-2-967-1064">電話</a>
 </div>
 
 <!-- ══ 우측 상단 플로팅 채널 ══ -->
-<aside class="fab" aria-label="快速諮詢">
+<aside class="fab" aria-label="LINE 諮詢">
   <span class="f-lbl">諮詢</span>
   <a class="f-line" href="#" data-ch="line" target="_blank" rel="noopener" aria-label="LINE 官方帳號" title="LINE 諮詢">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992zM7.71 13.474H5.325a.63.63 0 01-.63-.629V8.075a.63.63 0 111.26 0v4.14H7.71a.63.63 0 110 1.259zm2.466-.629a.631.631 0 01-1.26 0V8.075a.63.63 0 111.26 0v4.77zm5.741 0a.628.628 0 01-.629.629.626.626 0 01-.504-.252l-2.443-3.328v2.951a.63.63 0 11-1.26 0V8.075a.628.628 0 01.628-.629c.196 0 .38.096.5.25l2.448 3.339V8.075a.63.63 0 111.26 0v4.77zm3.855-3.014a.63.63 0 110 1.259h-1.756v1.126h1.756a.63.63 0 110 1.258h-2.386a.63.63 0 01-.629-.629V8.075c0-.346.282-.63.629-.63h2.386a.63.63 0 010 1.259h-1.756v1.127h1.756z"/></svg>
-  </a>
-  <a href="https://www.instagram.com/oaro_skyltw/" data-ch="ig" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.06 1.8.25 2.23.42.56.21.96.47 1.38.89.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.59-.07 4.85c-.06 1.17-.26 1.81-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.07.36-2.24.41-1.27.06-1.65.07-4.86.07s-3.59-.01-4.86-.07c-1.17-.06-1.82-.26-2.24-.42-.57-.22-.96-.48-1.38-.9-.42-.42-.69-.82-.9-1.38-.16-.42-.36-1.06-.42-2.23-.05-1.26-.06-1.65-.06-4.85s.02-3.59.06-4.86c.06-1.17.26-1.81.42-2.23.21-.57.48-.96.9-1.38.42-.42.81-.69 1.38-.9.42-.17 1.05-.36 2.22-.42 1.27-.05 1.65-.06 4.86-.06zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.91.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.02 3.67.07 4.95c.06 1.28.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.67 1.34 1.08 2.13 1.38.77.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.02 4.95-.07c1.28-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.67-.67 1.08-1.34 1.38-2.13.3-.77.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.02-3.67-.07-4.95c-.06-1.28-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63c-.77-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm7.85-10.41a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
-  </a>
-  <a href="#" data-ch="fb" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.1 23.69v-7.98H6.63v-3.67H9.1v-1.58c0-4.08 1.85-5.98 5.86-5.98.4 0 .96.04 1.47.1.51.06.9.14 1.14.2v3.32a8.6 8.6 0 00-.65-.03 26.8 26.8 0 00-.73-.01c-.71 0-1.26.1-1.68.31a1.69 1.69 0 00-.68.62c-.26.42-.37 1-.37 1.75v1.3h3.92l-.39 2.1-.29 1.57h-3.24v8.24C19.4 23.24 24 18.18 24 12.04 24 5.42 18.63.04 12 .04S0 5.42 0 12.04c0 5.63 3.87 10.35 9.1 11.65z"/></svg>
-  </a>
-  <a href="#" data-ch="yt" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 00.5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 002.12 2.14c1.87.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 002.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
-  </a>
-  <a class="f-tel" href="tel:+82-2-967-1064" aria-label="電話預約" title="02-967-1064">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a.99.99 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
-  </a>
-  <a id="f-top" href="#" aria-label="回到頂端" title="回到頂端">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></svg>
   </a>
 </aside>
 
 <script>
 // 채널 URL 을 한 곳에서만 관리한다. 확정되면 아래 3개만 교체하면 페이지 전체에 반영된다.
 var CH = {
-  line: "",                                          // TODO: 대만 LINE 오피셜 계정 URL
+  line: "https://lin.ee/rhdeHM0",                    // 오아로 대만 LINE 오피셜
   ig:   "https://www.instagram.com/oaro_skyltw/",
   fb:   "",                                          // TODO: 대만 페이스북 페이지 URL
   yt:   ""                                           // TODO: 유튜브 채널 URL
@@ -639,8 +714,36 @@ document.querySelectorAll("[data-ch]").forEach(function (a) {
 // LINE 없으면 하단 바가 전화 버튼 2개가 되므로 하나만 남긴다
 if (!CH.line) { var t = document.querySelector(".bar .t"); if (t) t.style.display = "none"; }
 
-// ── 8월 마감 카운트다운 (한국시간 8/31 23:59:59 = UTC 8/31 14:59:59) ──
-var END = Date.UTC(2026, 7, 31, 14, 59, 59);
+// ── LINE 첫 메시지에 광고 코드 자동 입력 (상담원이 어느 광고에서 왔는지 보고 셀 수 있게) ──
+// 모바일만: LINE 앱 대화창이 「…(代碼：A)」 문장이 채워진 채 열린다. PC 는 앱이 없을 수 있어 기존 친구추가(QR) 링크 유지.
+var LINE_OA = "@673mireh";
+(function () {
+  if (!/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) return;
+  var code = ((new URLSearchParams(location.search).get("utm_content") || "").split("_")[0] || "W").toUpperCase();
+  var msg = "您好，我想諮詢10月活動（代碼：" + code + "）";
+  var u = "https://line.me/R/oaMessage/" + LINE_OA + "/?" + encodeURIComponent(msg);
+  document.querySelectorAll('[data-ch="line"]').forEach(function (a) { a.href = u; });
+})();
+
+// ── 성과 측정: LINE·전화 클릭을 GA4(line_click/tel_click)와 메타 픽셀(Contact)에 기록 ──
+// 어느 광고(utm_content)에서 와서 어느 버튼(pos)을 눌렀는지까지 남긴다.
+var UTM = new URLSearchParams(location.search);
+function trackClick(a) {
+  var kind = a.href.indexOf("tel:") === 0 ? "tel" : (a.dataset.ch || "link");
+  var pos = a.classList.contains("hd-cta") ? "header" : a.closest(".bar") ? "mobile_bar"
+          : a.closest(".fab") ? "floating" : a.closest(".steps-cta") ? "steps" : "hero";
+  var p = { pos: pos, utm_source: UTM.get("utm_source") || "(direct)",
+            utm_campaign: UTM.get("utm_campaign") || "", utm_content: UTM.get("utm_content") || "" };
+  if (window.gtag) gtag("event", kind + "_click", p);
+  if (window.fbq) fbq("track", "Contact", { content_name: kind + "_" + pos });
+  if (window._lt && kind === "line") _lt("send", "cv", { type: "Conversion" }, [LINE_TAG_ID]);
+}
+document.querySelectorAll("[data-ch], a[href^='tel:']").forEach(function (a) {
+  a.addEventListener("click", function () { trackClick(a); });
+});
+
+// ── 10월 마감 카운트다운 (한국시간 10/31 23:59:59 = UTC 10/31 14:59:59) ──
+var END = Date.UTC(2026, 9, 31, 14, 59, 59);
 var CDU = { d: document.getElementById("cd-d"), h: document.getElementById("cd-h"),
             m: document.getElementById("cd-m"), s: document.getElementById("cd-s") };
 function pad(n) { return n < 10 ? "0" + n : "" + n; }
@@ -648,7 +751,7 @@ function tick() {
   var left = Math.floor((END - Date.now()) / 1000);
   if (left <= 0) {                                   // 마감 후엔 숫자 대신 문구만
     var bar = document.querySelector(".cd-bar .cd");
-    if (bar) bar.innerHTML = '<div class="cd-l"><b>8月活動已結束</b><span>最新優惠請透過 LINE 或來電洽詢</span></div>';
+    if (bar) bar.innerHTML = '<div class="cd-l"><b>10月活動已結束</b><span>最新優惠請透過 LINE 或來電洽詢</span></div>';
     clearInterval(iv); return;
   }
   CDU.d.textContent = Math.floor(left / 86400);
