@@ -651,7 +651,7 @@ function trackClick(a) {
   var p = { pos: pos, region: AD_REGION, utm_source: UTM.get("utm_source") || "(direct)",
             utm_campaign: UTM.get("utm_campaign") || "", utm_content: UTM.get("utm_content") || "" };
   if (window.gtag) gtag("event", kind + "_click", p);
-  if (window.fbq) fbq("track", "Contact", { content_name: kind + "_" + pos });
+  if (window.fbq) fbq("track", "Contact", { channel: kind === "wa" ? "whatsapp" : kind, content_name: kind + "_" + pos });
 }
 document.querySelectorAll("[data-ch], a[href^='tel:']").forEach(function (a) {
   a.addEventListener("click", function () { trackClick(a); });

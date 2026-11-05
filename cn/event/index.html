@@ -311,6 +311,8 @@ footer p{margin:0 0 6px}
 .wx-pop img{display:block; width:168px; height:auto; margin:0 auto}
 .wx-pop p{margin:8px 0 0; font-size:12px; color:#555; word-break:keep-all}
 .wx-pop b{display:block; margin-top:4px; font-size:13px; color:#111}
+.wx-pop .wx-id{margin-top:6px; font-size:12px; color:#555; overflow-wrap:anywhere}
+.wx-pop .wx-copy{margin-left:4px; padding:2px 6px; border:1px solid #ddd; border-radius:4px; background:#fff; color:#07A050; font:inherit; cursor:pointer}
 .wx-pop small{display:block; margin-top:6px; font-size:11px; color:#07A050}
 @media (hover:none){.wx-pop{display:none}}
 </style>
@@ -693,6 +695,7 @@ if (PIXEL_ID) {
   <a href="/cn/wechat/" data-ch="wechat" tabindex="-1"><img src="/cn/wechat/wechat-qr.jpg" alt="OARO 皮肤科 微信二维码"></a>
   <p>请用微信「扫一扫」添加好友</p>
   <b id="wx-pop-name"></b>
+  <div class="wx-id" id="wx-pop-id-row" hidden>微信号: <span id="wx-pop-id"></span> <button class="wx-copy" id="wx-pop-copy" type="button">复制</button></div>
   <small>点击二维码可放大</small>
 </div>
 
@@ -706,6 +709,29 @@ var AD_CODE = ((UTM.get("utm_content") || "").split("_")[0] || "W").toUpperCase(
 var WX_Q = new URLSearchParams(location.search); WX_Q.set("code", AD_CODE);
 var WX_URL = "/cn/wechat/?" + WX_Q.toString();
 document.getElementById("wx-pop-name").textContent = window.WECHAT_NAME || "";
+if (window.WECHAT_ID) {
+  document.getElementById("wx-pop-id").textContent = window.WECHAT_ID;
+  document.getElementById("wx-pop-id-row").hidden = false;
+}
+function copyWechatId() {
+  function fallback() {
+    var ta = document.createElement("textarea"); ta.value = window.WECHAT_ID;
+    ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta);
+    ta.select();
+    try { if (!document.execCommand("copy")) throw new Error("Copy failed"); }
+    finally { ta.remove(); }
+  }
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(window.WECHAT_ID).catch(fallback);
+  return Promise.resolve().then(fallback);
+}
+var wxCopyTimer;
+document.getElementById("wx-pop-copy").addEventListener("click", function () {
+  var b = this;
+  copyWechatId().then(function () {
+    b.textContent = "已复制"; clearTimeout(wxCopyTimer);
+    wxCopyTimer = setTimeout(function () { b.textContent = "复制"; }, 1500);
+  }, function () { b.textContent = "复制"; });
+});
 
 // PC 말풍선: 마우스를 올릴 수 있는 화면에서만. 터치 화면은 누르면 바로 QR 페이지로 간다.
 var pop = document.getElementById("wx-pop"), popHide = 0;
