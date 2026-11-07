@@ -1,0 +1,44 @@
+/* 기존 버튼과 QR 말풍선을 세 랜딩에서 공유한다. */
+.messenger[data-ch="wechat"]{background:#07C160}
+.messenger[data-ch="wa"]{background:#25D366}
+.messenger[data-ch="line"]{background:#06C755}
+.messenger,.fab a.messenger{color:#10251a; border:0; justify-content:center; min-height:48px; font-weight:800}
+.messenger svg{width:21px; height:21px; fill:currentColor; flex-shrink:0}
+.messenger:focus-visible,.btn-ghost:focus-visible{outline:3px solid #111; outline-offset:3px; box-shadow:0 0 0 6px #fff}
+.hero .btns{display:flex; flex-direction:column; align-items:stretch; max-width:380px}
+.hero .btns>.btn{flex:none; min-height:50px}
+.hero .btns>.messenger{height:56px; min-height:56px}
+.hero-sub{display:flex; gap:10px}
+.hero-sub .messenger{flex:1; padding:0 14px}
+.hero .btn-ghost{justify-content:center}
+.messengers{display:flex; flex-wrap:wrap; gap:10px; margin-top:24px}
+.messengers .primary{flex-grow:1}
+.steps-cta .messengers{margin-top:0}
+.steps-cta>span{flex-basis:100%}
+.messenger-footer{padding-top:32px}
+.fab a.messenger{width:52px; height:52px; padding:0; border-radius:14px}
+.fab a.messenger:hover{color:#10251a}
+.hd-cta.messenger{height:48px}
+.bar{display:none}
+@media(max-width:768px){
+ body{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+ html{scroll-padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+ .hd-cta.messenger,.fab{display:none}
+ .bar{display:flex; gap:6px; padding:10px 10px calc(10px + env(safe-area-inset-bottom))}
+ .bar a.messenger{flex:1; min-width:0; height:54px; padding:0 6px; gap:5px; font-size:12px}
+ .bar a.primary{flex:1.35}
+ .bar .messenger svg{width:18px; height:18px}
+ .messengers{width:100%}
+ .messengers .messenger{padding:0 14px; flex:1}
+ .messengers .primary{flex-basis:100%}
+}
+.wx-pop{position:fixed; z-index:120; left:0; top:0; width:196px; padding:14px 14px 12px; background:#fff; border-radius:14px; text-align:center; line-height:1.4;
+  box-shadow:0 14px 40px rgba(15,23,42,.22); opacity:0; visibility:hidden; transition:opacity .18s}
+.wx-pop.on{opacity:1; visibility:visible}
+.wx-pop img{display:block; width:168px; height:auto; margin:0 auto}
+.wx-pop p{margin:8px 0 0; font-size:12px; color:#555; word-break:keep-all}
+.wx-pop b{display:block; margin-top:4px; font-size:13px; color:#111}
+.wx-pop .wx-id{margin-top:6px; font-size:12px; color:#555; overflow-wrap:anywhere}
+.wx-pop .wx-copy{margin-left:4px; padding:2px 6px; border:1px solid #ddd; border-radius:4px; background:#fff; color:#07A050; font:inherit; cursor:pointer}
+.wx-pop small{display:block; margin-top:6px; font-size:11px; color:#07A050}
+@media (hover:none){.wx-pop{display:none}}

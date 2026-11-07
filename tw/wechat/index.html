@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>微信諮詢二維碼 | OARO 皮膚科 清涼里店</title>
+<meta name="description" content="OARO 皮膚科 清涼里店 微信諮詢二維碼。">
+<!-- QR 한 장짜리 안내 페이지 — 검색에 뜨면 방문자가 시술 정보 대신 QR 만 보게 된다. 색인 제외 (오벨 /cn/qr/wechat 과 같은 방식) -->
+<meta name="robots" content="noindex,follow">
+<style>
+:root{--primary:oklch(0.58 0.2 0); --fg:oklch(0.145 0 0); --muted:oklch(0.556 0 0); --soft:oklch(0.98 0.01 25); --line:oklch(0.922 0 0); --wx:#07C160}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--soft); color:var(--fg); -webkit-font-smoothing:antialiased;
+  font-family:"Pretendard Variable",Pretendard,"Noto Sans SC","PingFang SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,system-ui,"Segoe UI",sans-serif}
+main{min-height:100vh; display:flex; flex-direction:column; align-items:center; gap:18px; padding:32px 16px 40px}
+.brand{font-size:13px; color:var(--muted); letter-spacing:.04em}
+h1{margin:0; font-size:22px; font-weight:800; letter-spacing:-.01em}
+.card{width:100%; max-width:360px; padding:24px 22px 22px; border-radius:20px; background:#fff; box-shadow:0 12px 40px rgba(0,0,0,.08); text-align:center}
+.qr{display:block; width:100%; max-width:280px; height:auto; margin:0 auto}
+.name{margin:14px 0 0; font-size:16px; font-weight:800}
+.id{margin:4px 0 0; font-size:14px; color:var(--muted)}
+.id b{color:var(--fg); letter-spacing:.02em}
+.hint{margin:12px 0 0; font-size:14px; line-height:1.7; color:#555; word-break:keep-all}
+.msg{margin:16px 0 0; padding:12px 14px; border-radius:12px; background:var(--soft); font-size:13.5px; line-height:1.6; color:#3d3d3d; text-align:left}
+.msg b{display:block; margin-top:2px; color:var(--fg); font-size:14.5px}
+.btn{display:flex; align-items:center; justify-content:center; width:100%; height:48px; margin-top:12px; border:0; border-radius:12px;
+  font:inherit; font-weight:800; font-size:15px; cursor:pointer; text-decoration:none}
+.copy{background:var(--wx); color:#fff}
+.save{background:#fff; color:var(--fg); border:1px solid var(--line)}
+@media (hover:hover) and (pointer:fine){.save{display:none}}   /* PC 는 화면을 폰으로 찍으면 된다. 저장 버튼은 폰에서만 */
+.time{margin:12px 0 0; font-size:12px; color:var(--muted)}
+.back{display:inline-flex; align-items:center; min-height:44px; font-size:14px; color:var(--muted); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px}
+</style>
+<script>
+// GA4: 랜딩과 같은 속성. QR 페이지 열람 = wechat_qr_view
+var GA4_ID = "G-WNT23D5595";
+var gs = document.createElement("script"); gs.async = true;
+gs.src = "https://www.googletagmanager.com/gtag/js?id=" + GA4_ID; document.head.appendChild(gs);
+window.dataLayer = window.dataLayer || [];
+window.gtag = function () { dataLayer.push(arguments); };
+gtag("js", new Date()); gtag("config", GA4_ID);
+</script>
+<script src="/cn/wechat/config.js"></script>
+</head>
+<body>
+<main>
+  <span class="brand">OARO 皮膚科 · 清涼里店</span>
+  <h1>添加微信諮詢</h1>
+  <div class="card">
+    <!-- ★ QR 은 이 파일 한 장. 새 QR 을 받으면 wechat-consult-20261106.png 만 교체 (리샘플링 금지 — 원본 해상도 그대로) -->
+    <img class="qr" src="/cn/wechat/wechat-consult-20261106.png" alt="OARO 皮膚科 微信二維碼">
+    <p class="name" id="wx-name"></p>
+    <p class="id" id="wx-id-row" hidden>微信號 <b id="wx-id"></b></p>
+    <p class="hint">長按識別二維碼，或用微信「掃一掃」添加好友</p>
+    <div class="msg">添加好友後請發送：<b id="wx-msg"></b></div>
+    <button class="btn copy" type="button" id="wx-copy">複製諮詢内容</button>
+    <a class="btn save" id="wx-save" href="/cn/wechat/wechat-consult-20261106.png" download="OARO皮膚科_微信諮詢二維碼.png">儲存二維碼圖片</a>
+    <button class="btn save" type="button" id="wx-open" style="display:flex">開啟微信</button>
+    <p class="time">手機無法掃描自己螢幕上的二維碼時，請先儲存圖片，再在微信「掃一掃」→ 右上角相簿中選擇。<br>客服回覆時段 10:00-19:00（韓國時間）</p>
+  </div>
+  <a class="back" id="wx-back" href="/tw/event-august/">← 返回活動頁面</a>
+</main>
+<script>
+var Q = new URLSearchParams(location.search);
+var campaign = Q.get("utm_campaign") || "";
+var region = "TW";
+var fallbackCode = "TW-202611-" + ((Q.get("utm_content") || "").split("_")[0] || "W");
+var CODE = (Q.get("code") || fallbackCode).toUpperCase().replace(/[^A-Z0-9-]/g, "").slice(0, 40) || "W";
+var MSG = "您好，我想諮詢 OARO 清涼里店11月活動（代碼：" + CODE + "）\n肌膚需求：\n預計訪韓日期：\n方便來院時段：";
+document.getElementById("wx-name").textContent = window.WECHAT_NAME || "";
+if (window.WECHAT_ID) { document.getElementById("wx-id").textContent = WECHAT_ID; document.getElementById("wx-id-row").hidden = false; }
+document.getElementById("wx-msg").textContent = MSG;
+
+// 돌아가기: utm 을 붙인 채 랜딩으로
+Q.delete("code");
+document.getElementById("wx-back").href = "/tw/event-august/" + (Q.toString() ? "?" + Q.toString() : "");
+
+function copyText(t) {
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t);
+  var ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta);
+  ta.select(); try { if (!document.execCommand("copy")) throw new Error("Copy failed"); } catch (e) { return Promise.reject(e); } finally { ta.remove(); } return Promise.resolve();
+}
+document.getElementById("wx-copy").addEventListener("click", function () {
+  var b = this;
+  copyText(MSG).then(function () { b.textContent = "已複製，添加好友後貼上發送"; }, function () { b.textContent = "請長按上方文字複製"; });
+});
+
+// 별도 컨텍스트에서 앱 실행을 시도해 설치되지 않아도 안내 페이지를 유지한다.
+document.getElementById("wx-open").addEventListener("click", function () {
+  var frame = document.createElement("iframe"); frame.hidden = true;
+  frame.src = "weixin://"; document.body.appendChild(frame);
+  setTimeout(function () { frame.remove(); }, 2000);
+});
+gtag("event", "wechat_qr_view", { page: "tw", region: region, code: CODE, utm_source: Q.get("utm_source") || "(direct)",
+  utm_campaign: Q.get("utm_campaign") || "", utm_content: Q.get("utm_content") || "" });
+</script>
+</body>
+</html>

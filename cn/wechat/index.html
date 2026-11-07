@@ -30,7 +30,7 @@ h1{margin:0; font-size:22px; font-weight:800; letter-spacing:-.01em}
 .save{background:#fff; color:var(--fg); border:1px solid var(--line)}
 @media (hover:hover) and (pointer:fine){.save{display:none}}   /* PC 는 화면을 폰으로 찍으면 된다. 저장 버튼은 폰에서만 */
 .time{margin:12px 0 0; font-size:12px; color:var(--muted)}
-.back{font-size:14px; color:var(--muted); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px}
+.back{display:inline-flex; align-items:center; min-height:44px; font-size:14px; color:var(--muted); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px}
 </style>
 <script>
 // GA4: 랜딩과 같은 속성. QR 페이지 열람 = wechat_qr_view
@@ -41,28 +41,32 @@ window.dataLayer = window.dataLayer || [];
 window.gtag = function () { dataLayer.push(arguments); };
 gtag("js", new Date()); gtag("config", GA4_ID);
 </script>
-<script src="config.js"></script>
+<script src="/cn/wechat/config.js"></script>
 </head>
 <body>
 <main>
   <span class="brand">OARO 皮肤科 · 清凉里店</span>
   <h1>添加微信咨询</h1>
   <div class="card">
-    <!-- ★ QR 은 이 파일 한 장. 새 QR 을 받으면 wechat-qr.jpg 만 교체 (리샘플링 금지 — 원본 해상도 그대로) -->
-    <img class="qr" src="wechat-qr.jpg" alt="OARO 皮肤科 微信二维码">
+    <!-- ★ QR 은 이 파일 한 장. 새 QR 을 받으면 wechat-consult-20261106.png 만 교체 (리샘플링 금지 — 원본 해상도 그대로) -->
+    <img class="qr" src="/cn/wechat/wechat-consult-20261106.png" alt="OARO 皮肤科 微信二维码">
     <p class="name" id="wx-name"></p>
     <p class="id" id="wx-id-row" hidden>微信号 <b id="wx-id"></b></p>
     <p class="hint">长按识别二维码，或用微信「扫一扫」添加好友</p>
     <div class="msg">添加好友后请发送：<b id="wx-msg"></b></div>
     <button class="btn copy" type="button" id="wx-copy">复制咨询内容</button>
-    <a class="btn save" id="wx-save" href="wechat-qr.jpg" download="OARO皮肤科_微信二维码.jpg">保存二维码图片</a>
+    <a class="btn save" id="wx-save" href="/cn/wechat/wechat-consult-20261106.png" download="OARO皮肤科_微信咨询二维码.png">保存二维码图片</a>
+    <button class="btn save" type="button" id="wx-open" style="display:flex">打开微信</button>
     <p class="time">手机无法扫描自己屏幕上的二维码时，请先保存图片，再在微信「扫一扫」→ 右上角相册中选择。<br>客服回复时段 10:00-19:00（韩国时间）</p>
   </div>
   <a class="back" id="wx-back" href="/cn/event/">← 返回活动页面</a>
 </main>
 <script>
 var Q = new URLSearchParams(location.search);
-var CODE = (Q.get("code") || (Q.get("utm_content") || "").split("_")[0] || "W").toUpperCase().replace(/[^A-Z0-9-]/g, "").slice(0, 12) || "W";
+var campaign = Q.get("utm_campaign") || "";
+var region = /_my$/i.test(campaign) ? "MY" : /_sg$/i.test(campaign) ? "SG" : campaign === "cn_test" ? "CN" : "";
+var fallbackCode = ((Q.get("utm_content") || "").split("_")[0] || "W") + (region ? "-" + region : "");
+var CODE = (Q.get("code") || fallbackCode).toUpperCase().replace(/[^A-Z0-9-]/g, "").slice(0, 40) || "W";
 var MSG = "您好，我想咨询限时活动（代码：" + CODE + "）";
 document.getElementById("wx-name").textContent = window.WECHAT_NAME || "";
 if (window.WECHAT_ID) { document.getElementById("wx-id").textContent = WECHAT_ID; document.getElementById("wx-id-row").hidden = false; }
@@ -75,14 +79,20 @@ document.getElementById("wx-back").href = "/cn/event/" + (Q.toString() ? "?" + Q
 function copyText(t) {
   if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t);
   var ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta);
-  ta.select(); try { document.execCommand("copy"); } catch (e) {} ta.remove(); return Promise.resolve();
+  ta.select(); try { if (!document.execCommand("copy")) throw new Error("Copy failed"); } catch (e) { return Promise.reject(e); } finally { ta.remove(); } return Promise.resolve();
 }
 document.getElementById("wx-copy").addEventListener("click", function () {
   var b = this;
   copyText(MSG).then(function () { b.textContent = "已复制，添加好友后粘贴发送"; }, function () { b.textContent = "请长按上方文字复制"; });
 });
 
-gtag("event", "wechat_qr_view", { code: CODE, utm_source: Q.get("utm_source") || "(direct)",
+// 별도 컨텍스트에서 앱 실행을 시도해 설치되지 않아도 안내 페이지를 유지한다.
+document.getElementById("wx-open").addEventListener("click", function () {
+  var frame = document.createElement("iframe"); frame.hidden = true;
+  frame.src = "weixin://"; document.body.appendChild(frame);
+  setTimeout(function () { frame.remove(); }, 2000);
+});
+gtag("event", "wechat_qr_view", { page: "cn", region: region, code: CODE, utm_source: Q.get("utm_source") || "(direct)",
   utm_campaign: Q.get("utm_campaign") || "", utm_content: Q.get("utm_content") || "" });
 </script>
 </body>
