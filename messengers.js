@@ -10,8 +10,10 @@ var MSG = PAGE === "en" ? "Hi, I'd like to ask about a consultation (code: " + A
 var WX_Q = new URLSearchParams(location.search); WX_Q.set("code", AD_CODE);
 var WX_URL = "/" + PAGE + "/wechat/?" + WX_Q.toString();
 var CH = { wechat: WX_URL, wa: "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(MSG), line: "https://line.me/R/oaMessage/@673mireh/?" + encodeURIComponent(MSG) };
-document.getElementById("wx-pop-name").textContent = window.WECHAT_NAME || "";
-if (window.WECHAT_ID) {
+// 대만판은 위챗 말풍선이 없다(LINE만). 말풍선이 있는 페이지에서만 위챗 설정을 붙인다.
+var pop = document.getElementById("wx-pop"), popHide = 0;
+if (pop) document.getElementById("wx-pop-name").textContent = window.WECHAT_NAME || "";
+if (pop && window.WECHAT_ID) {
   document.getElementById("wx-pop-id").textContent = window.WECHAT_ID;
   document.getElementById("wx-pop-id-row").hidden = false;
 }
@@ -27,7 +29,7 @@ function copyWechatId() {
   return Promise.resolve().then(fallback);
 }
 var wxCopyTimer;
-document.getElementById("wx-pop-copy").addEventListener("click", function () {
+if (pop) document.getElementById("wx-pop-copy").addEventListener("click", function () {
   var b = this;
   copyWechatId().then(function () {
     b.textContent = (PAGE === "en" ? "Copied" : PAGE === "tw" ? "已複製" : "已复制"); clearTimeout(wxCopyTimer);
@@ -36,7 +38,6 @@ document.getElementById("wx-pop-copy").addEventListener("click", function () {
 });
 
 // PC 말풍선: 마우스를 올릴 수 있는 화면에서만. 터치 화면은 누르면 바로 QR 페이지로 간다.
-var pop = document.getElementById("wx-pop"), popHide = 0;
 var CAN_HOVER = matchMedia("(hover:hover) and (pointer:fine)").matches;
 function showPop(a) {
   clearTimeout(popHide);
@@ -48,10 +49,12 @@ function showPop(a) {
   pop.classList.add("on"); pop.setAttribute("aria-hidden", "false");
 }
 function hidePop() { popHide = setTimeout(function () { pop.classList.remove("on"); pop.setAttribute("aria-hidden", "true"); }, 160); }
-pop.addEventListener("mouseenter", function () { clearTimeout(popHide); });
-pop.addEventListener("mouseleave", hidePop);
-addEventListener("keydown", function (e) { if (e.key === "Escape") hidePop(); });
-addEventListener("scroll", function () { if (pop.classList.contains("on")) hidePop(); }, { passive: true });
+if (pop) {
+  pop.addEventListener("mouseenter", function () { clearTimeout(popHide); });
+  pop.addEventListener("mouseleave", hidePop);
+  addEventListener("keydown", function (e) { if (e.key === "Escape") hidePop(); });
+  addEventListener("scroll", function () { if (pop.classList.contains("on")) hidePop(); }, { passive: true });
+}
 
 
 function trackClick(a) {
