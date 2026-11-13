@@ -8,7 +8,7 @@ const {execFileSync} = require('node:child_process');
 const root = __dirname;
 const shots = 'C:/temp/oaro-messenger-20261107-shots';
 const pages = {cn:'cn/event', en:'en/event', tw:'tw/event-august'};
-const channels = {cn:['wechat','wa','line'],en:['wa','wechat','line'],tw:['line','wechat']};
+const channels = {cn:['wechat','wa','line'],en:['wa','wechat','line'],tw:['line']};
 const blocked = /googletagmanager|google-analytics|analytics\.google|connect\.facebook\.net|facebook\.com\/tr|d\.line-scdn\.net|tr\.line\.me/;
 const server = http.createServer((req,res) => {
   let file = path.resolve(root, '.' + decodeURIComponent(new URL(req.url,'http://localhost').pathname));
@@ -69,7 +69,7 @@ async function instrument(context) {
       });
       assert(layout.mainBottom<=layout.subTop && layout.subBottom<=layout.ghostTop);
       const ghostBox=await p.locator('.btn-ghost').boundingBox(); assert(ghostBox.height>=44);
-      if(mobile) assert(layout.widths[0]>layout.widths[1]);
+      if(mobile) assert(lang==='tw' ? layout.widths.length===1 : layout.widths[0]>layout.widths[1]);
       for(const a of await p.locator('[data-ch]').all()) {
         const href=await a.getAttribute('href'), ch=await a.getAttribute('data-ch');
         assert(decodeURIComponent(href).includes(code),`${lang}: missing code ${href}`);
@@ -98,7 +98,7 @@ async function instrument(context) {
         assert.equal(calls.filter(x=>x[0]==='_lt'&&x[2]==='cv').length,lang==='tw'&&ch==='line'?1:0);
         clickCount++;
       }
-      if(!mobile) {
+      if(!mobile && lang!=='tw') {
         await p.mouse.move(0,0);
         await p.waitForTimeout(250);
         await p.locator('.fab [data-ch="wechat"]').hover();
@@ -117,7 +117,7 @@ async function instrument(context) {
       }
       if(width!==390) {
         await p.screenshot({path:path.join(shots,`${lang}-${width}-map.png`)});
-        await p.evaluate(()=>{window.scrollTo(0,0); document.querySelector('.wx-pop').classList.remove('on');});
+        await p.evaluate(()=>{window.scrollTo(0,0); document.querySelector('.wx-pop')?.classList.remove('on');});
         await p.waitForFunction(()=>scrollY===0);
         await p.screenshot({path:path.join(shots,`${lang}-${width}-hero.png`)});
         await p.screenshot({path:path.join(shots,`${lang}-${width}.png`),fullPage:true});
@@ -130,7 +130,8 @@ async function instrument(context) {
       await ctx.close();
     }
     // 지역 분기와 쿼리 전달을 실제 모바일 위챗 이동으로 확인한다.
-    for(const lang of Object.keys(pages)) {
+    // 대만판은 위챗을 뺐다(2026-11-13 대표 지시) — 위챗 이동 검사는 중국어·영어판만.
+    for(const lang of Object.keys(pages).filter(l=>l!=='tw')) {
       const ctx=await browser.newContext({viewport:{width:390,height:900},isMobile:true,hasTouch:true});
       await instrument(ctx);
       const p=await ctx.newPage();
