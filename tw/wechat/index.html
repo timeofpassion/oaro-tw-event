@@ -67,7 +67,7 @@ var campaign = Q.get("utm_campaign") || "";
 var region = "TW";
 var fallbackCode = "TW-202611-" + ((Q.get("utm_content") || "").split("_")[0] || "W");
 var CODE = (Q.get("code") || fallbackCode).toUpperCase().replace(/[^A-Z0-9-]/g, "").slice(0, 40) || "W";
-var MSG = "您好，我想諮詢 OARO 清涼里店11月活動（代碼：" + CODE + "）\n肌膚需求：\n預計訪韓日期：\n方便來院時段：";
+var MSG = "您好，我想諮詢 OARO 清涼里店（代碼：" + CODE + "）";
 document.getElementById("wx-name").textContent = window.WECHAT_NAME || "";
 if (window.WECHAT_ID) { document.getElementById("wx-id").textContent = WECHAT_ID; document.getElementById("wx-id-row").hidden = false; }
 document.getElementById("wx-msg").textContent = MSG;
