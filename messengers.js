@@ -6,7 +6,7 @@ var campaign = UTM.get("utm_campaign") || "";
 var AD_REGION = PAGE === "tw" ? "TW" : /_my$/i.test(campaign) ? "MY" : /_sg$/i.test(campaign) ? "SG" : campaign === "cn_test" ? "CN" : "";
 var token = ((UTM.get("utm_content") || "").split("_")[0] || "W").toUpperCase().replace(/[^A-Z0-9-]/g, "").slice(0, 24) || "W";
 var AD_CODE = PAGE === "tw" ? "TW-202611-" + token : token + (AD_REGION ? "-" + AD_REGION : "");
-var MSG = PAGE === "en" ? "Hi, I'd like to ask about a consultation (code: " + AD_CODE + ")" : PAGE === "tw" ? "您好，我想諮詢 OARO 清涼里店11月活動（代碼：" + AD_CODE + "）\n肌膚需求：\n預計訪韓日期：\n方便來院時段：" : "您好，我想咨询限时活动（代码：" + AD_CODE + "）";
+var MSG = PAGE === "en" ? "Hi, I'd like to ask about a consultation (code: " + AD_CODE + ")" : PAGE === "tw" ? "您好，我想諮詢 OARO 清涼里店（代碼：" + AD_CODE + "）" : "您好，我想咨询限时活动（代码：" + AD_CODE + "）";
 var WX_Q = new URLSearchParams(location.search); WX_Q.set("code", AD_CODE);
 var WX_URL = "/" + PAGE + "/wechat/?" + WX_Q.toString();
 var CH = { wechat: WX_URL, wa: "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(MSG), line: "https://line.me/R/oaMessage/@673mireh/?" + encodeURIComponent(MSG) };
