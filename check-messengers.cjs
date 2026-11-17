@@ -6,7 +6,7 @@ const path = require('node:path');
 const http = require('node:http');
 const {execFileSync} = require('node:child_process');
 const root = __dirname;
-const shots = 'C:/temp/oaro-messenger-20261107-shots';
+const shots = path.join(root, 'artifacts', 'line-friend');
 const pages = {cn:'cn/event', en:'en/event', tw:'tw/event-august'};
 const channels = {cn:['wechat','wa','line'],en:['wa','wechat','line'],tw:['line']};
 const blocked = /googletagmanager|google-analytics|analytics\.google|connect\.facebook\.net|facebook\.com\/tr|d\.line-scdn\.net|tr\.line\.me/;
@@ -45,18 +45,21 @@ async function instrument(context) {
       const p=await ctx.newPage(), errors=[];
       p.on('pageerror',e=>errors.push(e.message));
       p.on('console',m=>{if(m.type()==='error') errors.push(m.text()+' '+m.location().url);});
-      await p.goto(`${base}/${url}/?utm_source=meta&utm_campaign=cn_test_my&utm_content=B_x`,{waitUntil:'networkidle'});
+      await p.goto(`${base}/${url}/?utm_source=meta&utm_campaign=cn_test_my&utm_content=B_x&utm_term=feed`,{waitUntil:'networkidle'});
       await p.addStyleTag({content:'html{scroll-behavior:auto !important}'});
       const original=execFileSync('git',['show',`HEAD:${url}/index.html`],{cwd:root,encoding:'utf8'});
       assert(await p.evaluate(original=>{
         const old=new DOMParser().parseFromString(original,'text/html');
-        const selector='title,meta,link[rel=canonical],script[type="application/ld+json"],h1,h2,h3,.items,.price,.tbl-scroll,.special,.notes,.steps li,.doc,.dev,.gal,details,.info,footer,.hero>img,.hero-in>p,.hero-meta,.hstats';
-        return JSON.stringify([...old.querySelectorAll(selector)].map(e=>e.outerHTML))===JSON.stringify([...document.querySelectorAll(selector)].map(e=>e.outerHTML));
+        const current=document.documentElement.cloneNode(true);
+        // 기존 대만 환산 스크립트가 추가한 표시만 제외하고 원문을 비교한다.
+        current.querySelectorAll('.ntd').forEach(e=>e.remove());
+        const selector='title,meta,link[rel=canonical],script[type="application/ld+json"],h1,h2:not(#line-fallback-title),h3,.items,.price,.tbl-scroll,.special,.notes,.steps li,.doc,.dev,.gal,details,.info,footer,.hero>img,.hero-in>p,.hero-meta,.hstats';
+        return JSON.stringify([...old.querySelectorAll(selector)].map(e=>e.outerHTML))===JSON.stringify([...current.querySelectorAll(selector)].map(e=>e.outerHTML));
       },original),`${lang}: protected content changed`);
       const code=lang==='tw'?'TW-202611-B':'B-MY';
       assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${lang}/${width}: overflow`);
       for (const selector of ['.hero .btns','.steps-cta','.messenger-footer',mobile?'.bar':'.fab']) {
-        assert.deepEqual(await p.locator(selector+' [data-ch]').evaluateAll(as=>as.map(a=>a.dataset.ch)),channels[lang]);
+        assert.deepEqual(await p.locator(selector+' [data-ch]').evaluateAll(as=>as.map(a=>a.dataset.ch)),lang==='tw' && selector==='.hero .btns' ? ['line','line'] : channels[lang]);
         for (const a of await p.locator(selector+' [data-ch]').all()) assert(await a.isVisible());
       }
       for (const a of await p.locator('[data-pos="price"]').all()) assert(await a.isVisible());
@@ -67,20 +70,21 @@ async function instrument(context) {
         const widths=[...document.querySelectorAll('.bar a')].map(a=>a.getBoundingClientRect().width);
         return {mainBottom:main.bottom,subTop:sub.top,subBottom:sub.bottom,ghostTop:ghost.top,widths};
       });
-      assert(layout.mainBottom<=layout.subTop && layout.subBottom<=layout.ghostTop);
+      assert((lang==='tw' && !mobile ? layout.mainBottom===layout.subBottom : layout.mainBottom<=layout.subTop) && layout.subBottom<=layout.ghostTop);
       const ghostBox=await p.locator('.btn-ghost').boundingBox(); assert(ghostBox.height>=44);
       if(mobile) assert(lang==='tw' ? layout.widths.length===1 : layout.widths[0]>layout.widths[1]);
       for(const a of await p.locator('[data-ch]').all()) {
         const href=await a.getAttribute('href'), ch=await a.getAttribute('data-ch');
+        if(await a.getAttribute('data-method')==='friend') { assert.equal(href,'https://line.me/R/ti/p/@673mireh'); continue; }
         assert(decodeURIComponent(href).includes(code),`${lang}: missing code ${href}`);
         if(ch==='wa') assert(href.startsWith('https://wa.me/821030981064?text='));
         if(ch==='line') assert(href.startsWith('https://line.me/R/oaMessage/@673mireh/?'));
       }
       // 실제 클릭은 실행하되 외부 앱으로 이동하거나 상담을 전송하지 않는다.
       await p.evaluate(()=>document.addEventListener('click',e=>{if(e.target.closest('a')) e.preventDefault();}));
-      const count=await p.locator('.messenger').count();
+      const count=await p.locator('.messenger, .concern-btn').count();
       for(let i=0;i<count;i++) {
-        const a=p.locator('.messenger').nth(i);
+        const a=p.locator('.messenger, .concern-btn').nth(i);
         if(!await a.isVisible()) continue;
         await a.scrollIntoViewIfNeeded();
         const b=await a.boundingBox(); assert(b.width>=44 && b.height>=44,`${lang}/${width}: small button`);
@@ -93,8 +97,8 @@ async function instrument(context) {
         assert.equal(ga.length,1,`${lang}/${pos}/${ch}: GA count`);
         assert.equal(fb.length,1,`${lang}/${pos}/${ch}: Contact count`);
         assert.equal(ga[0][2],ch+'_click');
-        assert.deepEqual(ga[0][3],{channel:ch,pos,page:lang,region:lang==='tw'?'TW':'MY',utm_source:'meta',utm_campaign:'cn_test_my',utm_content:'B_x'});
-        assert.deepEqual(fb[0][3],{channel:ch,content_name:ch+'_'+pos});
+        assert.deepEqual(ga[0][3],{channel:ch,pos,page:lang,region:lang==='tw'?'TW':'MY',utm_source:'meta',utm_campaign:'cn_test_my',utm_content:'B_x',concern:await a.getAttribute('data-concern')||'',...(lang==='tw'?{method:await a.getAttribute('data-concern')?'concern':await a.getAttribute('data-method')||'message',in_app:false,placement:'feed'}:{})});
+        assert.deepEqual(fb[0][3],{channel:ch,content_name:ch+'_'+pos+(lang==='tw'?'_'+(await a.getAttribute('data-concern')?'concern':await a.getAttribute('data-method')||'message'):'')+(await a.getAttribute('data-concern')?'_'+await a.getAttribute('data-concern'):'')});
         assert.equal(calls.filter(x=>x[0]==='_lt'&&x[2]==='cv').length,lang==='tw'&&ch==='line'?1:0);
         clickCount++;
       }
@@ -115,7 +119,7 @@ async function instrument(context) {
         assert(m.y+m.height<=bar.y,`${lang}/${width}: map covered`);
         assert(await p.evaluate(()=>parseFloat(getComputedStyle(document.body).paddingBottom)>=document.querySelector('.bar').getBoundingClientRect().height));
       }
-      if(width!==390) {
+      if(width!==390 || lang==='tw') {
         await p.screenshot({path:path.join(shots,`${lang}-${width}-map.png`)});
         await p.evaluate(()=>{window.scrollTo(0,0); document.querySelector('.wx-pop')?.classList.remove('on');});
         await p.waitForFunction(()=>scrollY===0);
@@ -136,7 +140,7 @@ async function instrument(context) {
       await instrument(ctx);
       const p=await ctx.newPage();
       for(const campaign of ['cn_test_my','cn_test_sg','cn_test','']) {
-        await p.goto(`${base}/${pages[lang]}/?utm_campaign=${campaign}&utm_content=B_x`,{waitUntil:'domcontentloaded'});
+        await p.goto(`${base}/${pages[lang]}/?utm_campaign=${campaign}&utm_content=B_x&utm_term=feed`,{waitUntil:'domcontentloaded'});
         const expected=lang==='tw'?'TW-202611-B':campaign==='cn_test_my'?'B-MY':campaign==='cn_test_sg'?'B-SG':campaign==='cn_test'?'B-CN':'B';
         await p.locator('.hero [data-ch="wechat"]').click();
         await p.waitForURL(`**/${lang}/wechat/**`);
@@ -162,8 +166,53 @@ async function instrument(context) {
       }
       await ctx.close(); console.log(`PASS ${lang}: MY/SG/CN/default, mobile QR navigation, view, copy, download, app-attempt`);
     }
+    for (const width of [360,390,1440]) {
+      const ctx=await browser.newContext({viewport:{width,height:900},userAgent:'Mozilla/5.0 Instagram'});
+      await instrument(ctx);
+      const p=await ctx.newPage();
+      await p.goto(`${base}/tw/event-august/?utm_term=story`,{waitUntil:'networkidle'});
+      assert.equal(await p.locator('[data-ch="line"][target="_blank"]').count(),0);
+      assert((await p.evaluate(()=>calls)).some(c=>c[0]==='gtag' && c[1]==='config' && c[3].placement==='story'));
+      await p.evaluate(()=>document.addEventListener('click',e=>{if(e.target.closest('a'))e.preventDefault();}));
+      const trigger=p.locator('.hero [data-method="friend"]');
+      await trigger.click();
+      await p.waitForTimeout(1650);
+      assert(await p.locator('#line-fallback').isVisible());
+      assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+      const event=await p.evaluate(()=>calls.filter(c=>c[2]==='line_fallback_shown'));
+      assert.equal(event.length,1); assert.equal(event[0][3].placement,'story');
+      const click=await p.evaluate(()=>calls.find(c=>c[2]==='line_click'));
+      assert.equal(click[3].in_app,true); assert.equal(click[3].method,'friend');
+      await p.locator('#line-copy').click(); assert.equal(await p.evaluate(()=>copied),'@673mireh');
+      await p.screenshot({path:path.join(shots,`tw-${width}-fallback.png`)});
+      await p.keyboard.press('Escape'); assert(!await p.locator('#line-fallback').isVisible());
+      assert(await trigger.evaluate(a=>a===document.activeElement));
+      await trigger.click(); await p.waitForTimeout(1650);
+      await p.evaluate(()=>{navigator.clipboard.writeText=async()=>{throw Error('denied')}; document.execCommand=()=>false;});
+      await p.locator('#line-copy').click();
+      assert((await p.locator('#line-copy-status').textContent()).includes('@673mireh'));
+      await p.evaluate(()=>{document.execCommand=()=>true;});
+      await p.locator('#line-copy').click();
+      assert.equal(await p.locator('#line-copy-status').textContent(),'已複製 LINE ID');
+      await p.locator('.line-close').click(); assert(!await p.locator('#line-fallback').isVisible());
+      await trigger.click();
+      await p.evaluate(()=>{Object.defineProperty(document,'visibilityState',{value:'hidden',configurable:true}); document.dispatchEvent(new Event('visibilitychange'));});
+      await p.waitForTimeout(1650);
+      await p.evaluate(()=>{Object.defineProperty(document,'visibilityState',{value:'visible',configurable:true}); document.dispatchEvent(new Event('visibilitychange'));});
+      assert(!await p.locator('#line-fallback').isVisible());
+      await ctx.close(); console.log(`PASS tw ${width}: in-app target, fallback, tracking, copy, Escape, close, focus`);
+    }
+    for(const ua of ['FBAN','FBAV','Line/14.0']) {
+      const ctx=await browser.newContext({userAgent:'Mozilla/5.0 '+ua}); await instrument(ctx);
+      const p=await ctx.newPage();
+      for(const [lang,url] of Object.entries(pages)) {
+        await p.goto(`${base}/${url}/`,{waitUntil:'domcontentloaded'});
+        assert.equal(await p.locator('[data-ch="line"]').first().getAttribute('target'),lang==='tw'?null:'_blank');
+      }
+      await ctx.close();
+    }
     if(resourceErrors.size) {console.error(`KNOWN EXTERNAL FAIL: ${resourceErrors.size} existing image URLs return HTTP 400; total console errors are not zero.`); process.exitCode=1;}
-    console.log(`PASS messenger checks: 9 viewports, ${clickCount} individual clicks; screenshots: ${shots}`);
+    console.log(`PASS messenger checks: 9 page viewports + 3 fallback viewports, ${clickCount} individual clicks; screenshots: ${shots}`);
   } finally {await browser.close(); server.close();}
 })().catch(e=>{console.error(e);server.close();process.exitCode=1;});
 

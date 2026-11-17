@@ -42,3 +42,23 @@
 .wx-pop .wx-copy{margin-left:4px; padding:2px 6px; border:1px solid #ddd; border-radius:4px; background:#fff; color:#07A050; font:inherit; cursor:pointer}
 .wx-pop small{display:block; margin-top:6px; font-size:11px; color:#07A050}
 @media (hover:none){.wx-pop{display:none}}
+
+/* 대만 LINE 친구 추가와 앱 내 브라우저 안내 */
+body[data-page="tw"] .messenger.line-secondary{background:#fff; color:#145b32; border:1px solid #a1cbb0}
+body[data-page="tw"] .hero .btns>.messenger{padding-inline:12px; font-size:14px}
+body[data-page="tw"] .hd-in{flex-wrap:wrap; height:auto; min-height:64px; padding-block:8px; gap:8px}
+body[data-page="tw"] .hd-cta{margin-left:0}
+#line-fallback{width:calc(100% - 24px); max-width:440px; max-height:calc(100dvh - 24px); margin:auto auto 12px; padding:24px; border:0; border-radius:20px; color:#172038; background:#fff; overflow:auto}
+#line-fallback::backdrop{background:rgba(0,0,0,.55)}
+#line-fallback h2{margin:0 44px 20px 0; font-size:21px; line-height:1.4}
+#line-fallback ol{padding-left:24px; margin:0; overflow-wrap:anywhere}
+#line-fallback li+li{margin-top:16px}
+#line-fallback button{min-width:44px; min-height:44px; padding:8px 12px; border:1px solid #a1cbb0; border-radius:8px; background:#fff; color:#145b32; font:inherit; cursor:pointer}
+#line-fallback button:focus-visible{outline:3px solid #172038; outline-offset:2px}
+#line-fallback .line-close{position:absolute; top:12px; right:12px; border:0}
+#line-copy-status{margin:12px 0 0; font-size:14px}
+@media(min-width:769px){
+ body[data-page="tw"] .hero .btns{display:grid; grid-template-columns:1.4fr 1fr; max-width:620px}
+ body[data-page="tw"] .hero-sub .messenger{height:56px}
+ body[data-page="tw"] .hero .btn-ghost{grid-column:1 / -1}
+}

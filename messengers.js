@@ -2,6 +2,7 @@
 var PAGE = document.body.dataset.page;
 var WA_NUMBER = "821030981064";
 var UTM = new URLSearchParams(location.search);
+var LINE_IN_APP = /FBAN|FBAV|Instagram|Line\//i.test(navigator.userAgent);
 var campaign = UTM.get("utm_campaign") || "";
 var AD_REGION = PAGE === "tw" ? "TW" : /_my$/i.test(campaign) ? "MY" : /_sg$/i.test(campaign) ? "SG" : campaign === "cn_test" ? "CN" : "";
 var token = ((UTM.get("utm_content") || "").split("_")[0] || "W").toUpperCase().replace(/[^A-Z0-9-]/g, "").slice(0, 24) || "W";
@@ -57,13 +58,39 @@ if (pop) {
 }
 
 
+var lineFallback = PAGE === "tw" && document.getElementById("line-fallback");
+var lineFallbackTimer, lineTrigger;
+if (lineFallback) {
+  lineFallback.querySelector(".line-close").addEventListener("click", function () { lineFallback.close(); });
+  lineFallback.addEventListener("close", function () { if (lineTrigger) lineTrigger.focus({ preventScroll: true }); });
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState !== "visible") clearTimeout(lineFallbackTimer);
+  });
+  addEventListener("pagehide", function () { clearTimeout(lineFallbackTimer); });
+  document.getElementById("line-copy").addEventListener("click", function () {
+    var status = document.getElementById("line-copy-status");
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = "@673mireh";
+      lineFallback.appendChild(ta); ta.select();
+      try { if (!document.execCommand("copy")) throw new Error("Copy failed"); }
+      finally { ta.remove(); document.getElementById("line-copy").focus(); }
+    }
+    var copy = navigator.clipboard && window.isSecureContext
+      ? navigator.clipboard.writeText("@673mireh").catch(fallback) : Promise.resolve().then(fallback);
+    copy.then(function () { status.textContent = "已複製 LINE ID"; }, function () { status.textContent = "無法複製，請手動輸入 @673mireh"; });
+  });
+}
+function lineMethod(a) { return a.dataset.concern ? "concern" : a.dataset.method === "friend" ? "friend" : "message"; }
 function trackClick(a) {
   var kind = a.dataset.ch || "tel";
   var pos = a.dataset.pos || "footer";
   var p = { channel: kind, pos: pos, page: PAGE, region: AD_REGION,
     utm_source: UTM.get("utm_source") || "(direct)", utm_campaign: campaign, utm_content: UTM.get("utm_content") || "", concern: a.dataset.concern || "" };
+  if (PAGE === "tw" && kind === "line") {
+    p.method = lineMethod(a); p.in_app = LINE_IN_APP; p.placement = UTM.get("utm_term") || "";
+  }
   if (window.gtag) gtag("event", kind + "_click", p);
-  if (window.fbq) fbq("track", "Contact", { channel: kind, content_name: kind + "_" + pos + (a.dataset.concern ? "_" + a.dataset.concern : "") });
+  if (window.fbq) fbq("track", "Contact", { channel: kind, content_name: kind + "_" + pos + (PAGE === "tw" && kind === "line" ? "_" + lineMethod(a) : "") + (a.dataset.concern ? "_" + a.dataset.concern : "") });
   if (PAGE === "tw" && kind === "line" && window._lt) _lt("send", "cv", { type: "Conversion" }, [LINE_TAG_ID]);
 }
 document.querySelectorAll("[data-ch], a[href^='tel:']").forEach(function (a) {
@@ -74,8 +101,21 @@ document.querySelectorAll("[data-ch], a[href^='tel:']").forEach(function (a) {
       : "您好，我想問「" + a.dataset.concern + "」療程的價格和時段（代碼：" + AD_CODE + "）";
     a.href = "https://line.me/R/oaMessage/@673mireh/?" + encodeURIComponent(q);
   }
+  if (PAGE === "tw" && a.dataset.ch === "line") {
+    if (a.dataset.method === "friend") a.href = "https://line.me/R/ti/p/@673mireh";
+    if (LINE_IN_APP) a.removeAttribute("target");
+  }
   a.addEventListener("click", function (e) {
     trackClick(a);
+    if (lineFallback && a.dataset.ch === "line" && LINE_IN_APP) {
+      clearTimeout(lineFallbackTimer);
+      lineTrigger = a;
+      lineFallbackTimer = setTimeout(function () {
+        if (document.visibilityState !== "visible" || lineFallback.open) return;
+        lineFallback.showModal();
+        if (window.gtag) gtag("event", "line_fallback_shown", { method: lineMethod(a), in_app: LINE_IN_APP, placement: UTM.get("utm_term") || "", pos: a.dataset.pos });
+      }, 1500);
+    }
     if (a.dataset.ch === "wechat" && !a.closest(".wx-pop") && CAN_HOVER) {
       e.preventDefault(); showPop(a);
     }
