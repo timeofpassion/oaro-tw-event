@@ -61,13 +61,19 @@ function trackClick(a) {
   var kind = a.dataset.ch || "tel";
   var pos = a.dataset.pos || "footer";
   var p = { channel: kind, pos: pos, page: PAGE, region: AD_REGION,
-    utm_source: UTM.get("utm_source") || "(direct)", utm_campaign: campaign, utm_content: UTM.get("utm_content") || "" };
+    utm_source: UTM.get("utm_source") || "(direct)", utm_campaign: campaign, utm_content: UTM.get("utm_content") || "", concern: a.dataset.concern || "" };
   if (window.gtag) gtag("event", kind + "_click", p);
-  if (window.fbq) fbq("track", "Contact", { channel: kind, content_name: kind + "_" + pos });
+  if (window.fbq) fbq("track", "Contact", { channel: kind, content_name: kind + "_" + pos + (a.dataset.concern ? "_" + a.dataset.concern : "") });
   if (PAGE === "tw" && kind === "line" && window._lt) _lt("send", "cv", { type: "Conversion" }, [LINE_TAG_ID]);
 }
 document.querySelectorAll("[data-ch], a[href^='tel:']").forEach(function (a) {
   if (a.dataset.ch) a.href = CH[a.dataset.ch];
+  // 대만판 고민 버튼: 고른 고민을 LINE 첫 메시지에 넣는다(광고 코드는 그대로)
+  if (a.dataset.concern && a.dataset.ch === "line") {
+    var q = a.dataset.concern === "還不確定" ? "您好，我還不確定要做什麼療程，想先問問醫師建議和價格（代碼：" + AD_CODE + "）"
+      : "您好，我想問「" + a.dataset.concern + "」療程的價格和時段（代碼：" + AD_CODE + "）";
+    a.href = "https://line.me/R/oaMessage/@673mireh/?" + encodeURIComponent(q);
+  }
   a.addEventListener("click", function (e) {
     trackClick(a);
     if (a.dataset.ch === "wechat" && !a.closest(".wx-pop") && CAN_HOVER) {
