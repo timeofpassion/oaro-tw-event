@@ -1,6 +1,8 @@
 // 모든 상담 버튼의 링크와 클릭 측정을 한 곳에서 관리한다.
 var PAGE = document.body.dataset.page;
 var WA_NUMBER = "821030981064";
+// 대만 광고 전용 LINE 주소가 발급되면 이 값만 교체한다.
+var LINE_FRIEND_URL = "https://lin.ee/yIwrIxt";
 var UTM = new URLSearchParams(location.search);
 var LINE_IN_APP = /FBAN|FBAV|Instagram|Line\//i.test(navigator.userAgent);
 var campaign = UTM.get("utm_campaign") || "";
@@ -102,7 +104,7 @@ document.querySelectorAll("[data-ch], a[href^='tel:']").forEach(function (a) {
     a.href = "https://line.me/R/oaMessage/@673mireh/?" + encodeURIComponent(q);
   }
   if (PAGE === "tw" && a.dataset.ch === "line") {
-    if (a.dataset.method === "friend") a.href = "https://line.me/R/ti/p/@673mireh";
+    if (a.dataset.method === "friend") a.href = LINE_FRIEND_URL;
     if (LINE_IN_APP) a.removeAttribute("target");
   }
   a.addEventListener("click", function (e) {
