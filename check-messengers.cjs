@@ -75,7 +75,7 @@ async function instrument(context) {
       if(mobile) assert(lang==='tw' ? layout.widths.length===1 : layout.widths[0]>layout.widths[1]);
       for(const a of await p.locator('[data-ch]').all()) {
         const href=await a.getAttribute('href'), ch=await a.getAttribute('data-ch');
-        if(await a.getAttribute('data-method')==='friend') { assert.equal(href,'https://line.me/R/ti/p/@673mireh'); continue; }
+        if(await a.getAttribute('data-method')==='friend') { assert.match(href,/^https:\/\/lin\.ee\/[A-Za-z0-9]+$/); assert.equal(href,await p.evaluate(()=>LINE_FRIEND_URL)); continue; }
         assert(decodeURIComponent(href).includes(code),`${lang}: missing code ${href}`);
         if(ch==='wa') assert(href.startsWith('https://wa.me/821030981064?text='));
         if(ch==='line') assert(href.startsWith('https://line.me/R/oaMessage/@673mireh/?'));
@@ -175,6 +175,7 @@ async function instrument(context) {
       assert((await p.evaluate(()=>calls)).some(c=>c[0]==='gtag' && c[1]==='config' && c[3].placement==='story'));
       await p.evaluate(()=>document.addEventListener('click',e=>{if(e.target.closest('a'))e.preventDefault();}));
       const trigger=p.locator('.hero [data-method="friend"]');
+      assert.equal(await trigger.getAttribute('href'),await p.evaluate(()=>LINE_FRIEND_URL));
       await trigger.click();
       await p.waitForTimeout(1650);
       assert(await p.locator('#line-fallback').isVisible());
