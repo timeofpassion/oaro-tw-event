@@ -306,8 +306,6 @@ footer p{margin:0 0 6px}
 .concern-btn:hover{background:var(--primary); color:#fff}
 .concern-btn.wide{grid-column:1/-1; background:#06C755; border-color:#06C755; color:#fff}
 .concern-note{margin:12px 0 0; color:var(--muted); font-size:14px}
-.ask3 dl{display:grid; grid-template-columns:auto 1fr; gap:6px 14px; margin:10px 0 0}
-.ask3 dt{font-weight:800}.ask3 dd{margin:0}
 @media(max-width:640px){ .concern-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
 .ntd{display:block; font-size:12px; font-weight:600; color:var(--muted); letter-spacing:0}
 .srow b .ntd{color:#1b1408; opacity:.8; font-size:11px}
@@ -369,9 +367,9 @@ if (PIXEL_ID) {
 <div class="hero">
   <img src="/hero.webp" alt="OARO 皮膚科 清涼里店 醫療團隊" fetchpriority="high" width="1920" height="1120">
   <div class="wrap hero-in">
-    <div class="eyebrows"><span class="eyebrow">11月限定活動</span><span class="eyebrow eyebrow-2">最高 5折</span></div>
+    <div class="eyebrows"><span class="eyebrow">11月限定活動</span></div>
     <h1>專程來韓國做皮膚療程？<br>出發前先用 LINE 問清楚價格和時段</h1>
-    <p><span class="nw">皮膚科專科醫師</span>・<span class="nw">LINE 中文諮詢</span>・<span class="nw">清涼里站4號出口1分鐘</span><br>不用先決定療程，先問再決定。</p>
+    <p><span class="nw">皮膚科專科醫師</span>・<span class="nw">LINE 中文諮詢</span>・<span class="nw">首爾清涼里</span><br>不用先決定療程，先問再決定。</p>
     <div class="btns"><a class="btn messenger primary" data-ch="line" data-method="friend" data-pos="hero" href="https://line.me/R/ti/p/@673mireh" aria-label="加入 LINE 好友・領取11月優惠" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992zM7.71 13.474H5.325a.63.63 0 01-.63-.629V8.075a.63.63 0 111.26 0v4.14H7.71a.63.63 0 110 1.259zm2.466-.629a.631.631 0 01-1.26 0V8.075a.63.63 0 111.26 0v4.77zm5.741 0a.628.628 0 01-.629.629.626.626 0 01-.504-.252l-2.443-3.328v2.951a.63.63 0 11-1.26 0V8.075a.628.628 0 01.628-.629c.196 0 .38.096.5.25l2.448 3.339V8.075a.63.63 0 111.26 0v4.77zm3.855-3.014a.63.63 0 110 1.259h-1.756v1.126h1.756a.63.63 0 110 1.258h-2.386a.63.63 0 01-.629-.629V8.075c0-.346.282-.63.629-.63h2.386a.63.63 0 010 1.259h-1.756v1.127h1.756z"/></svg>加入 LINE 好友・領取11月優惠</a><div class="hero-sub"><a class="btn messenger line-secondary" data-ch="line" data-pos="hero" href="https://line.me/R/oaMessage/@673mireh/" target="_blank" rel="noopener">直接傳訊息問價格</a></div><a class="btn btn-ghost" href="#price">查看活動內容</a></div>
     <ul class="hstats">
       <li><b>-25%</b><span>組合優惠</span></li>
@@ -379,8 +377,8 @@ if (PIXEL_ID) {
       <li><b>11/30</b><span>活動截止</span></li>
     </ul>
     <div class="hero-meta">
-      <span>首爾清涼里站4號出口</span>
-      <span>皮膚科專科醫師3位</span>
+      <span>首爾清涼里站</span>
+      <span>皮膚科專科醫師</span>
       <span>可中文諮詢</span>
     </div>
   </div>
@@ -399,15 +397,6 @@ if (PIXEL_ID) {
       <a class="concern-btn wide" data-ch="line" data-pos="concern" data-concern="還不確定" href="https://line.me/R/oaMessage/@673mireh/" target="_blank" rel="noopener">還不確定，想先問問醫師建議</a>
     </div>
     <p class="concern-note">點擊後會開啟 LINE，按傳送即可。中文客服回覆時段 10:00-19:00（韓國時間）</p>
-    <!-- 원장 확인 전: data-confirm="pending" + hidden. 확인된 줄만 남기고 hidden 을 지운다 -->
-    <div class="ask3" data-confirm="pending" hidden>
-      <h3>來韓前先問清楚 3 件事</h3>
-      <dl>
-        <dt>誰幫你看診？</dt><dd>（待院方確認）</dd>
-        <dt>價格怎麼算？</dt><dd>（待院方確認）</dd>
-        <dt>會不會被推銷？</dt><dd>（待院方確認）</dd>
-      </dl>
-    </div>
   </div>
 </section>
 
